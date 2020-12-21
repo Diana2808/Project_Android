@@ -472,6 +472,7 @@
 ]}]
 
 # pentru ICONS misto -> https://www.flaticon.com/
+# am folosit ArrayAdapter
 
 
 
