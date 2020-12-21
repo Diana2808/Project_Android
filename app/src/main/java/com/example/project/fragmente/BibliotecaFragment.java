@@ -1,66 +1,114 @@
 package com.example.project.fragmente;
 
+import android.net.DnsResolver;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.project.R;
+import com.example.project.asyncTask.AsyncTaskRunner;
+import com.example.project.asyncTask.Callback;
+import com.example.project.clase.Tara;
+import com.example.project.httpManager.HttpManager;
+import com.example.project.httpManager.TaraParser;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link BibliotecaFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Callable;
+
+
 public class BibliotecaFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    //cheie
+    private static final String BIBLIOTECA_CHEIE="cheieBiblioteca";
+
+    //URL din care preiau datele
+    private static final String URL="https://api.mocki.io/v1/dbabe801";
+
+    //lista in care pun datele
+    private List<Tara> listBiblioteca=new ArrayList<>();
+
+    //elementul din layout unde adaug lista mea
+    private ListView listView;
+
+    private AsyncTaskRunner asyncTaskRunner=new AsyncTaskRunner();
+
 
     public BibliotecaFragment() {
-        // Required empty public constructor
+
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment BibliotecaFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static BibliotecaFragment newInstance(String param1, String param2) {
+
+    public static BibliotecaFragment newInstance(ArrayList<Tara> tari) {
         BibliotecaFragment fragment = new BibliotecaFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList(BibliotecaFragment.BIBLIOTECA_CHEIE,tari);
+        fragment.setArguments(bundle);
+
         return fragment;
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_biblioteca, container, false);
+        final View view=inflater.inflate(R.layout.fragment_biblioteca, container, false);
+        listView=view.findViewById(R.id.lvTari);
+
+        if(getArguments()!=null){
+            listBiblioteca=getArguments().getParcelableArrayList(BIBLIOTECA_CHEIE);
+            Log.i("Fragment Biblioteca", listBiblioteca.toString());
+        }
+
+        //creare adapter pt listview
+        if(getContext()!=null){
+            Toast.makeText(getContext().getApplicationContext(),
+                    "Lista cu toate monedele din lume!",Toast.LENGTH_SHORT).show();
+            ArrayAdapter adapter=new ArrayAdapter(getContext().getApplicationContext(),
+                    android.R.layout.simple_list_item_1,listBiblioteca);
+            listView.setAdapter(adapter);
+        }
+        getTariFromNetwork();
+        return view;
     }
+
+
+    public void notifyInternalAdapter() {
+        ArrayAdapter adapter = (ArrayAdapter) listView.getAdapter();
+        adapter.notifyDataSetChanged();
+    }
+
+
+    private void getTariFromNetwork(){
+
+
+        final Callable<String> asyncOperation= new HttpManager(URL);
+       Callback<String> mainThreadOperation= new Callback<String>()
+
+        {
+            @Override
+            public void runResultOnUiThread(String result) {
+
+                //8.
+                listBiblioteca.addAll(TaraParser.fromJson(result));
+
+                //notofica adapterul
+                notifyInternalAdapter();
+            }
+        };
+
+        asyncTaskRunner.executeAsync(asyncOperation,mainThreadOperation);
+
+    }
+
 }

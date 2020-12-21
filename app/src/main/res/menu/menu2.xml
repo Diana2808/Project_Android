@@ -4,28 +4,28 @@
     <item
         android:id="@+id/fragment_acasa"
         android:title="Acasa"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/home"
 
         ></item>
 
     <item
     android:id="@+id/fragment_biblioteca"
     android:title="Biblioteca"
-    android:icon="@mipmap/ic_launcher"
+    android:icon="@drawable/money"
 
     ></item>
 
     <item
         android:id="@+id/fragment_colectiaMea"
         android:title="Colectia mea"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/wallet"
 
         ></item>
 
     <item
         android:id="@+id/fragment_Profil"
         android:title="Profil"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/user"
 
         ></item>
 
