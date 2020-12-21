@@ -471,6 +471,8 @@
 }}
 ]}]
 
+# pentru ICONS misto -> https://www.flaticon.com/
+
 
 
 
