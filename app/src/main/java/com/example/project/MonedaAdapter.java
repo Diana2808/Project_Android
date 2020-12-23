@@ -11,8 +11,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.project.clase.Moneda;
 import com.example.project.clase.Tara;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MonedaAdapter extends ArrayAdapter<Tara> {
@@ -71,5 +73,6 @@ public class MonedaAdapter extends ArrayAdapter<Tara> {
             textView.setText(R.string.lv_row_default);
         }
     }
+
 
 }

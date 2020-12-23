@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/lw_row_view_Biblioteca_background">
+    android:background="@drawable/lista"
+    android:paddingBottom="8dp">
 
     <ImageView
         android:id="@+id/iv_row_icon"
@@ -22,7 +23,7 @@
         android:id="@+id/first_constraint"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_row_icon"
         app:layout_constraintTop_toTopOf="parent">
@@ -50,10 +51,11 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            app:fontFamily="casual"
             android:text="@string/tv_row_tara"
             android:textAllCaps="true"
+            android:textSize="15sp"
             android:textStyle="bold"
+            app:fontFamily="casual"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_row_continent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -68,6 +70,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="@string/tv_row_denumire"
+            android:textStyle="italic"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_row_continent" />
 
@@ -106,6 +109,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_row_icon">
 
@@ -119,6 +123,8 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="@string/tv_row_grosime"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -133,6 +139,8 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="@string/tv_row_diametru"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_row_grosime"
             app:layout_constraintTop_toTopOf="parent" />
@@ -147,6 +155,8 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="@string/tv_row_culoare"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_row_diametru"
             app:layout_constraintTop_toTopOf="parent" />
@@ -161,6 +171,8 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:text="@string/tv_row_material"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_row_culoare"
             app:layout_constraintTop_toTopOf="parent" />

@@ -3,8 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragmente.BibliotecaFragment">
-
+    tools:context=".fragmente.BibliotecaFragment"
+    android:background="#552B54"
+    android:paddingTop="10dp"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp"
+    android:paddingBottom="10dp"
+    >
 
     <ListView
         android:id="@+id/lvTari"
