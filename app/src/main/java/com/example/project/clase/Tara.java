@@ -10,21 +10,28 @@ import java.util.List;
 public class Tara implements Parcelable {
     private String denumire;
     private String continent;
-    private List<Moneda> monede;
+    private Moneda monede;
 
 
-    public Tara(String denumire_tara, String continent, List<Moneda> monede) {
-        this.denumire = denumire_tara;
+    public Tara(String denumire, String continent, Moneda monede) {
+        this.denumire = denumire;
         this.continent = continent;
         this.monede = monede;
     }
 
-    public String getDenumire_tara() {
+    protected Tara(Parcel in) {
+        denumire = in.readString();
+        continent = in.readString();
+    }
+
+
+
+    public String getDenumire() {
         return denumire;
     }
 
-    public void setDenumire_tara(String denumire_tara) {
-        this.denumire = denumire_tara;
+    public void setDenumire(String denumire) {
+        this.denumire = denumire;
     }
 
     public String getContinent() {
@@ -35,23 +42,12 @@ public class Tara implements Parcelable {
         this.continent = continent;
     }
 
-    public List<Moneda> getMonede() {
+    public Moneda getMonede() {
         return monede;
     }
 
-    public void setMonede(List<Moneda> monede) {
+    public void setMonede(Moneda monede) {
         this.monede = monede;
-    }
-
-
-
-    @Override
-    public String toString() {
-        return "Tara{" +
-                "denumire_tara='" + denumire + '\'' +
-                ", continent='" + continent + '\'' +
-                ", monede=" + monede +
-                '}';
     }
 
     @Override
@@ -63,19 +59,19 @@ public class Tara implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(denumire);
         dest.writeString(continent);
-        for(int i=0;i<monede.size();i++){
+
             dest.writeString(
-                    new Moneda(monede.get(i).getAn(),
-                            monede.get(i).getValoare(),
-                            monede.get(i).getDenumire(),
-                    new Caracteristici(monede.get(i).getCaracteristici().getGrosime(),
-                            monede.get(i).getCaracteristici().getDiametru(),
-                            monede.get(i).getCaracteristici().getCuloare(),
-                            monede.get(i).getCaracteristici().getMaterial())).toString());
+                    new Moneda(monede.getAn(),
+                            monede.getValoare(),
+                            monede.getDenumire(),
+                    new Caracteristici(monede.getCaracteristici().getGrosime(),
+                            monede.getCaracteristici().getDiametru(),
+                            monede.getCaracteristici().getCuloare(),
+                            monede.getCaracteristici().getMaterial())).toString());
 
         }
 
 
     }
-}
+
 

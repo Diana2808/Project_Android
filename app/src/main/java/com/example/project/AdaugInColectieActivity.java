@@ -101,7 +101,7 @@ public class AdaugInColectieActivity extends AppCompatActivity {
                     .show();
             return false;
         }
-        if(etAn.getText() == null || Integer.parseInt(etAn.getText().toString().trim())==4
+        if(etAn.getText() == null || Integer.parseInt(etAn.getText().toString().trim())!=4
         ) {
             Toast.makeText(getApplicationContext(),
                    "Anul trebuie sa contina 4 cifre completate!",
@@ -133,10 +133,9 @@ public class AdaugInColectieActivity extends AppCompatActivity {
         Caracteristici caracteristici=new Caracteristici(grosime,diametru,culoare,material);
         Moneda moneda=new Moneda(an,valoare,denumire,caracteristici);
 
-        List<Moneda> listaMonede=new ArrayList<>();
-        listaMonede.add(moneda);
 
-        Tara taraObiect=new Tara(tara,continent,listaMonede);
+
+        Tara taraObiect=new Tara(tara,continent,moneda);
 
         return taraObiect;
     }
