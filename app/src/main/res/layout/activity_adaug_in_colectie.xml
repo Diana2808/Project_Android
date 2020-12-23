@@ -5,7 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AdaugInColectieActivity"
-    android:padding="20dp"
+    android:paddingTop="8dp"
+    android:paddingRight="15dp"
+    android:paddingLeft="15dp"
+    android:paddingBottom="8dp"
     android:background="#552B54">
 
 
@@ -19,6 +22,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingBottom="20dp"
 
 
         android:background="@drawable/formular">
@@ -64,7 +69,8 @@
                   android:id="@+id/tiet_continent"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:hint="Continent" />
+                  android:hint="Continent"
+                  android:textColorHint="#541260"/>
           </com.google.android.material.textfield.TextInputLayout>
 
           <com.google.android.material.textfield.TextInputLayout
@@ -75,9 +81,19 @@
                   android:id="@+id/tiet_tara"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:hint="Tara" />
+                  android:hint="Tara"
+                  android:textColorHint="#541260"/>
 
           </com.google.android.material.textfield.TextInputLayout>
+
+          <Button
+              android:id="@+id/btn_adaug"
+              android:layout_width="40dp"
+              android:layout_height="40dp"
+              android:background="@drawable/plus"
+              android:clickable="true"
+              android:layout_gravity="center"
+              android:layout_margin="20dp"/>
 
 
       </LinearLayout>
@@ -103,7 +119,8 @@
                     android:id="@+id/tiet_denumire"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Denumire moneda" />
+                    android:hint="Denumire moneda"
+                    android:textColorHint="#541260"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -115,7 +132,8 @@
                     android:id="@+id/tiet_valoare"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Valoare moneda" />
+                    android:hint="Valoare moneda"
+                    android:textColorHint="#541260"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -142,7 +160,8 @@
                     android:id="@+id/tiet_diametru"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Diametru" />
+                    android:hint="Diametru"
+                    android:textColorHint="#541260"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -153,7 +172,8 @@
                     android:id="@+id/tiet_grosime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Grosime" />
+                    android:hint="Grosime"
+                    android:textColorHint="#541260"/>
 
             </com.google.android.material.textfield.TextInputLayout>
             <TextView
@@ -173,13 +193,16 @@
                     android:id="@+id/rb_auriu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Auriu" />
+                    android:text="Auriu"
+                    android:buttonTint="#ECB81F"
+                    />
 
                 <RadioButton
                     android:id="@+id/rb_argintiu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Argintiu" />
+                    android:text="Argintiu"
+                    android:buttonTint="#8E8D8D"/>
             </RadioGroup>
 
 
@@ -191,7 +214,8 @@
                     android:id="@+id/tiet_material"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Material" />
+                    android:hint="Material"
+                    android:textColorHint="#541260"/>
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -199,20 +223,7 @@
         </LinearLayout>
 
 
-
-
     </LinearLayout>
-
-    <ToggleButton
-        android:id="@+id/togbtn_adaug"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@drawable/plus"
-        android:text="ToggleButton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout_adaugare" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

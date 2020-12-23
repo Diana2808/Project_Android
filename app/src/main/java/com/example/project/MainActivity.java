@@ -1,12 +1,13 @@
 package com.example.project;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.ListView;
 
 import com.example.project.clase.Tara;
 import com.example.project.fragmente.BibliotecaFragment;
@@ -16,7 +17,6 @@ import com.example.project.fragmente.ProfilFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,9 +27,13 @@ public class MainActivity extends AppCompatActivity {
     private Fragment fragmentCurent;
 
     //lista de tari cu monede JSON
-    private ArrayList<Tara>  tari=new ArrayList<>();
+    private ArrayList<Tara> tariListaJSON =new ArrayList<>();
+
+    //lista de monede din colectie
+    private ArrayList<Tara>  monedeListaColectie=new ArrayList<>();
 
 
+    public static final int COD = 222;
 
 
 
@@ -46,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     //Bottom  nav
-
     private void initializare() {
         bottomNavigationView=findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -55,11 +58,11 @@ public class MainActivity extends AppCompatActivity {
 
                 if (item.getItemId()==R.id.fragment_biblioteca) {
 
-                    fragmentCurent = BibliotecaFragment.newInstance(tari);
+                    fragmentCurent = BibliotecaFragment.newInstance(tariListaJSON);
                 }else if(item.getItemId()==R.id.fragment_acasa) {
                     fragmentCurent = new AcasaFragment();
                 }else if(item.getItemId()==R.id.fragment_colectiaMea) {
-                    fragmentCurent = new ColectieFragment();
+                    fragmentCurent = ColectieFragment.newInstance(monedeListaColectie);
                 }else if(item.getItemId()==R.id.fragment_Profil) {
                     fragmentCurent = new ProfilFragment();
                 }
@@ -82,4 +85,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+    //pentru transferul de informatii dintr-o alta ACTIVITATE
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==COD && resultCode==RESULT_OK && data!=null){
+            Tara monedaNoua=data.getParcelableExtra(AdaugInColectieActivity.CHEIE_TARA);
+            if(monedaNoua!=null)
+            {
+                monedeListaColectie.add(monedaNoua);
+
+                if(fragmentCurent instanceof ColectieFragment)
+                {
+                    ((ColectieFragment) fragmentCurent).notifyInternalAdapter();
+                }
+            }
+        }
+    }
 }
