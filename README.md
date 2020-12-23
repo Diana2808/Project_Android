@@ -475,7 +475,7 @@
 # am folosit ArrayAdapter
 
 
-#22-23.12
-#Am lucrat la formularul de adaugare in COLECTIE. Am avut dificulati in ceea ce priveste adapterul pe care l-ai creeat. La apasarea butonului de PULL, nu mi s-a actualizat priectul cu adapterul si ceea ce ai lucrat tu. This is a problem!!! PLS maine cand ai timp si esti pe la laptop hai sa vb pe ZOOM SA ITI DAU un share screen. PUPIX -> app, nu mi-a mers adaugarea in lista. Maine incerc sa ma uit pe ea si vad ce mai pot lucra maine mai mult. Poate o baza de date :)
+# 22-23.12
+# Am lucrat la formularul de adaugare in COLECTIE. Am avut dificulati in ceea ce priveste adapterul pe care l-ai creeat. La apasarea butonului de PULL, nu mi s-a actualizat priectul cu adapterul si ceea ce ai lucrat tu. This is a problem!!! PLS maine cand ai timp si esti pe la laptop hai sa vb pe ZOOM SA ITI DAU un share screen. PUPIX -> app, nu mi-a mers adaugarea in lista. Maine incerc sa ma uit pe ea si vad ce mai pot lucra maine mai mult. Poate o baza de date :)
 
-
+# https://www.youtube.com/watch?v=Y7JTkXoN8OE&t=83s&ab_channel=John%27sAndroidStudioTutorials -> pentru imaginea din adapter -> poate ne ajuta
