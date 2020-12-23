@@ -4,6 +4,215 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdaugInColectieActivity">
+    tools:context=".AdaugInColectieActivity"
+    android:padding="20dp"
+    android:background="#552B54">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout_adaugare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+
+        android:background="@drawable/formular">
+      <LinearLayout
+          android:id="@+id/linearLayout_add2"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:layout_margin="10dp"
+
+          >
+          <TextView
+              android:id="@+id/tv_titlu"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="MONEDA NOUA"
+              android:layout_marginTop="20dp"
+              android:layout_marginBottom="20dp"
+              android:gravity="center"
+              android:textStyle="bold"
+              android:fontFamily="casual"
+              android:textSize="30dp"
+              android:textColor="#000000"
+              />
+
+          <ImageView
+              android:id="@+id/img_ban"
+              android:layout_width="150dp"
+              android:layout_height="150dp"
+              app:srcCompat="@drawable/coin"
+              android:layout_gravity="center_vertical"
+              android:layout_marginTop="10dp"
+              android:layout_marginBottom="20dp"
+              android:layout_marginRight="20dp"/>
+
+
+
+          <com.google.android.material.textfield.TextInputLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+              <com.google.android.material.textfield.TextInputEditText
+                  android:id="@+id/tiet_continent"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:hint="Continent" />
+          </com.google.android.material.textfield.TextInputLayout>
+
+          <com.google.android.material.textfield.TextInputLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+              <com.google.android.material.textfield.TextInputEditText
+                  android:id="@+id/tiet_tara"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:hint="Tara" />
+
+          </com.google.android.material.textfield.TextInputLayout>
+
+
+      </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout_add1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="10dp"
+
+            >
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tiet_denumire"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Denumire moneda" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tiet_valoare"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Valoare moneda" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/tv_an"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="An YYYY" />
+
+            <EditText
+                android:id="@+id/etn_an"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number"
+                />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tiet_diametru"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Diametru" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tiet_grosime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Grosime" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/tv_caracteristici"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Culoare moneda" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/rg_culoare"
+                >
+
+                <RadioButton
+
+                    android:id="@+id/rb_auriu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Auriu" />
+
+                <RadioButton
+                    android:id="@+id/rb_argintiu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Argintiu" />
+            </RadioGroup>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tiet_material"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Material" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+    <ToggleButton
+        android:id="@+id/togbtn_adaug"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/plus"
+        android:text="ToggleButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_adaugare" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
