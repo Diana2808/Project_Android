@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.project.MonedaAdapter;
 import com.example.project.R;
 import com.example.project.asyncTask.AsyncTaskRunner;
 import com.example.project.asyncTask.Callback;
@@ -74,8 +75,11 @@ public class BibliotecaFragment extends Fragment {
         if(getContext()!=null){
             Toast.makeText(getContext().getApplicationContext(),
                     "Lista cu toate monedele din lume!",Toast.LENGTH_SHORT).show();
-            ArrayAdapter adapter=new ArrayAdapter(getContext().getApplicationContext(),
-                    android.R.layout.simple_list_item_1,listBiblioteca);
+//            ArrayAdapter adapter=new ArrayAdapter(getContext().getApplicationContext(),
+//                    android.R.layout.simple_list_item_1,listBiblioteca);
+            MonedaAdapter adapter = new MonedaAdapter(getContext().getApplicationContext(),
+                                                R.layout.lv_row_view_biblioteca,
+                                                listBiblioteca, getLayoutInflater());
             listView.setAdapter(adapter);
         }
         getTariFromNetwork();
