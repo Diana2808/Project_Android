@@ -101,7 +101,7 @@ public class AdaugInColectieActivity extends AppCompatActivity {
                     .show();
             return false;
         }
-        if(etAn.getText() == null || Integer.parseInt(etAn.getText().toString().trim())==4
+        if(etAn.getText() == null || Integer.parseInt(etAn.getText().toString().trim())!=4
         ) {
             Toast.makeText(getApplicationContext(),
                    "Anul trebuie sa contina 4 cifre completate!",

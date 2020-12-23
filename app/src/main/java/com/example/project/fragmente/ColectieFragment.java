@@ -24,7 +24,6 @@ import java.util.List;
 
 public class ColectieFragment extends Fragment {
 
-
  private Button btnAdauga;
  private ListView lvColectie;
  private List<Tara> listaTari=new ArrayList<>();
