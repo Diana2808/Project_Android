@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.project.clase.Tara;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int COD = 210;
     //pentru menu bottomNavigationView
     BottomNavigationView bottomNavigationView;
 
@@ -33,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Tara>  monedeListaColectie=new ArrayList<>();
 
 
-    public static final int COD = 222;
 
 
 
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             if(monedaNoua!=null)
             {
                 monedeListaColectie.add(monedaNoua);
-
+                System.out.println(monedeListaColectie.toString());
                 if(fragmentCurent instanceof ColectieFragment)
                 {
                     ((ColectieFragment) fragmentCurent).notifyInternalAdapter();

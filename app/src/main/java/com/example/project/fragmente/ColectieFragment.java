@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.project.AdaugInColectieActivity;
+import com.example.project.MonedaAdapter;
 import com.example.project.R;
 import com.example.project.clase.Tara;
 
@@ -37,12 +38,7 @@ public class ColectieFragment extends Fragment {
     }
 
 
-    public static ColectieFragment newInstance(String param1, String param2) {
-        ColectieFragment fragment = new ColectieFragment();
-        Bundle bundle = new Bundle();
 
-        return fragment;
-    }
 
 
     @Override
@@ -66,8 +62,10 @@ public class ColectieFragment extends Fragment {
         }
         //creare adapter pentru ListView
         if (getContext() != null) {
-            ArrayAdapter adapter=new ArrayAdapter(getContext().getApplicationContext(),android.R.layout.simple_list_item_1,listaTari);
+            MonedaAdapter adapter=new MonedaAdapter(getContext().getApplicationContext(),R.layout.lv_row_view_biblioteca,listaTari,
+                    getLayoutInflater());
             lvColectie.setAdapter(adapter);
+            Log.i("dsfddddddd",listaTari.toString());
         }
 
 

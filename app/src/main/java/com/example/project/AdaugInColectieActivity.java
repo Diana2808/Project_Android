@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -62,6 +63,10 @@ public class AdaugInColectieActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(validare()){
                     Tara tara=creezTara();
+                    Toast.makeText(getApplicationContext(),
+                            tara.toString(),
+                            Toast.LENGTH_LONG)
+                            .show();
                     intent.putExtra(CHEIE_TARA,tara);
                     setResult(RESULT_OK,intent);
                     finish();
@@ -101,7 +106,7 @@ public class AdaugInColectieActivity extends AppCompatActivity {
                     .show();
             return false;
         }
-        if(etAn.getText() == null || Integer.parseInt(etAn.getText().toString().trim())!=4
+        if(etAn.getText() == null || Integer.parseInt(etAn.getText().toString().trim())<4
         ) {
             Toast.makeText(getApplicationContext(),
                    "Anul trebuie sa contina 4 cifre completate!",
@@ -115,7 +120,7 @@ public class AdaugInColectieActivity extends AppCompatActivity {
 
 
     //creez obiect
-    private Tara creezTara(){
+    protected Tara creezTara(){
         String continent=tietContinent.getText().toString();
         String tara=tietTara.getText().toString();
         String denumire=tietDenumire.getText().toString();
@@ -133,10 +138,8 @@ public class AdaugInColectieActivity extends AppCompatActivity {
         Caracteristici caracteristici=new Caracteristici(grosime,diametru,culoare,material);
         Moneda moneda=new Moneda(an,valoare,denumire,caracteristici);
 
-
-
         Tara taraObiect=new Tara(tara,continent,moneda);
-
+        System.out.println(taraObiect.toString());
         return taraObiect;
     }
 }

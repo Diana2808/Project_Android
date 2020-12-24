@@ -25,6 +25,17 @@ public class Tara implements Parcelable {
     }
 
 
+    public static final Creator<Tara> CREATOR = new Creator<Tara>() {
+        @Override
+        public Tara createFromParcel(Parcel in) {
+            return new Tara(in);
+        }
+
+        @Override
+        public Tara[] newArray(int size) {
+            return new Tara[size];
+        }
+    };
 
     public String getDenumire() {
         return denumire;
@@ -69,7 +80,7 @@ public class Tara implements Parcelable {
                             monede.getCaracteristici().getCuloare(),
                             monede.getCaracteristici().getMaterial())).toString());
 
-        }
+                    }
 
 
     }
