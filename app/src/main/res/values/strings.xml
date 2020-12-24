@@ -12,4 +12,7 @@
     <string name="tv_row_diametru">Diametru</string>
     <string name="tv_row_culoare">Culoare</string>
     <string name="tv_row_material">Material</string>
+    <string name="tv2_acasa">Ne bucurăm să te revedem!</string>
+    <string name="tv3_acasa">Aceasta este ultima ta recenzie:</string>
+    <string name="fab_icon_content_description">review</string>
 </resources>
