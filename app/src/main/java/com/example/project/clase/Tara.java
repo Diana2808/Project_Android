@@ -7,7 +7,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tara implements Parcelable {
+public class Tara implements Parcelable{
     private String denumire;
     private String continent;
     private Moneda monede;
@@ -19,11 +19,12 @@ public class Tara implements Parcelable {
         this.monede = monede;
     }
 
+
     protected Tara(Parcel in) {
         denumire = in.readString();
         continent = in.readString();
+        monede = in.readParcelable(Moneda.class.getClassLoader());
     }
-
 
     public static final Creator<Tara> CREATOR = new Creator<Tara>() {
         @Override
@@ -70,19 +71,19 @@ public class Tara implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(denumire);
         dest.writeString(continent);
-
-            dest.writeString(
-                    new Moneda(monede.getAn(),
-                            monede.getValoare(),
-                            monede.getDenumire(),
-                    new Caracteristici(monede.getCaracteristici().getGrosime(),
-                            monede.getCaracteristici().getDiametru(),
-                            monede.getCaracteristici().getCuloare(),
-                            monede.getCaracteristici().getMaterial())).toString());
-
-                    }
-
-
+        dest.writeParcelable(monede, flags);
     }
 
+
+
+
+    @Override
+    public String toString() {
+        return "Tara{" +
+                "denumire='" + denumire + '\'' +
+                ", continent='" + continent + '\'' +
+                ", monede=" + monede +
+                '}';
+    }
+}
 

@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.example.project.clase.Caracteristici;
+import com.example.project.clase.Moneda;
 import com.example.project.clase.Tara;
 import com.example.project.fragmente.BibliotecaFragment;
 import com.example.project.fragmente.ColectieFragment;
@@ -63,6 +65,11 @@ public class MainActivity extends AppCompatActivity {
                 }else if(item.getItemId()==R.id.fragment_acasa) {
                     fragmentCurent = new AcasaFragment();
                 }else if(item.getItemId()==R.id.fragment_colectiaMea) {
+
+                    Intent intent=new Intent(getApplicationContext(), AdaugInColectieActivity.class);
+                    startActivityForResult(intent, COD);
+
+
                     fragmentCurent = ColectieFragment.newInstance(monedeListaColectie);
                 }else if(item.getItemId()==R.id.fragment_Profil) {
                     fragmentCurent = new ProfilFragment();
@@ -85,19 +92,19 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,new AcasaFragment()).commit();
     }
 
+//pentru transfer de date in fragmentul ColectieFragment
 
-
-    //pentru transferul de informatii dintr-o alta ACTIVITATE
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode==COD && resultCode==RESULT_OK && data!=null){
-            Tara monedaNoua=data.getParcelableExtra(AdaugInColectieActivity.CHEIE_TARA);
-            if(monedaNoua!=null)
+            Tara moneda=data.getParcelableExtra(AdaugInColectieActivity.CHEIE_TARA);
+
+            if( moneda!=null && moneda.getMonede()!=null && moneda.getMonede().getCaracteristici()!=null)
             {
-                monedeListaColectie.add(monedaNoua);
-                System.out.println(monedeListaColectie.toString());
+                monedeListaColectie.add(moneda);
+
                 if(fragmentCurent instanceof ColectieFragment)
                 {
                     ((ColectieFragment) fragmentCurent).notifyInternalAdapter();
@@ -105,4 +112,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+
 }

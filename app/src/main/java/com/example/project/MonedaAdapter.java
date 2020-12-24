@@ -39,6 +39,8 @@ public class MonedaAdapter extends ArrayAdapter<Tara> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View view = inflater.inflate(resource, parent, false);
         Tara tara = tari.get(position);
+
+
         if(tara != null) {
             addDenumireTara(view, tara.getDenumire());
             addContinent(view, tara.getContinent());
@@ -100,7 +102,7 @@ public class MonedaAdapter extends ArrayAdapter<Tara> {
 
     private void addAnMoneda(View view, int an){
         TextView textView = view.findViewById(R.id.tv_row_an);
-        if(an>0000 && an<9999){
+        if(an>1499 && an<2021){
             textView.setText(String.valueOf(an));
         } else {
             textView.setText(R.string.lv_row_default);

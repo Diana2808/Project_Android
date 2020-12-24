@@ -1,6 +1,9 @@
 package com.example.project.clase;
 
-public class Caracteristici {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Caracteristici implements Parcelable {
     private String grosime;
     private String diametru;
     private String culoare;
@@ -12,6 +15,25 @@ public class Caracteristici {
         this.culoare = culoare;
         this.material = material;
     }
+
+    protected Caracteristici(Parcel in) {
+        grosime = in.readString();
+        diametru = in.readString();
+        culoare = in.readString();
+        material = in.readString();
+    }
+
+    public static final Creator<Caracteristici> CREATOR = new Creator<Caracteristici>() {
+        @Override
+        public Caracteristici createFromParcel(Parcel in) {
+            return new Caracteristici(in);
+        }
+
+        @Override
+        public Caracteristici[] newArray(int size) {
+            return new Caracteristici[size];
+        }
+    };
 
     public String getGrosime() {
         return grosime;
@@ -56,5 +78,18 @@ public class Caracteristici {
                 ", culoare='" + culoare + '\'' +
                 ", material='" + material + '\'' +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(grosime);
+        dest.writeString(diametru);
+        dest.writeString(culoare);
+        dest.writeString(material);
     }
 }
