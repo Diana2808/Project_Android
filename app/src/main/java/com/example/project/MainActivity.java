@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.project.clase.Caracteristici;
@@ -114,4 +116,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //menu2 -> optionMenu
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.menu1,menu);
+        return true;
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.adaugare_bd ||item.getItemId()==R.id.stergere_bd ||item.getItemId()==R.id.modifica_bd){
+                    Intent intent1=new Intent(getApplicationContext(),AdaugInColectieActivity.class);
+                    startActivity(intent1);
+        }
+        if(item.getItemId()==R.id.info){
+            Intent intent2=new Intent(getApplicationContext(),InfoActivity.class);
+            startActivity(intent2);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

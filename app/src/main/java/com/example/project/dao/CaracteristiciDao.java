@@ -11,11 +11,11 @@ import com.example.project.claseBD.CaracteristiciBD;
 public interface CaracteristiciDao {
 
     @Insert
-    void insert(CaracteristiciBD caracteristici);
+    long insert(CaracteristiciBD caracteristici);
 
     @Update
-    void update(CaracteristiciBD caracteristici);
+    int update(CaracteristiciBD caracteristici);
 
     @Delete
-    void delete(CaracteristiciBD caracteristiciBD);
+    int delete(CaracteristiciBD caracteristiciBD);
 }

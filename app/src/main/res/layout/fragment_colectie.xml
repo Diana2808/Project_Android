@@ -17,7 +17,7 @@
         android:clickable="true"
         android:background="@drawable/buton_adaugare"
         android:text="Adauga"
-        style="@style/stilul1"
+        android:textColor="#fff"
         android:fontFamily="casual"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

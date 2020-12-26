@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+<item android:id="@+id/info"
+    android:icon="@drawable/icon_bd"
+    android:title="Adaugare"
+    app:showAsAction="ifRoom"
+
+    ></item>
+
+    <item android:id="@+id/meniu_dml"
+        android:title="BAZA DE DATE"
+        app:showAsAction="never">
+
+        <menu>
+            <item android:id="@+id/adaugare_bd"
+                android:title="adaugare"/>
+
+            <item android:id="@+id/stergere_bd"
+                android:title="stergere"
+                />
+            <item android:id="@+id/modifica_bd"
+                android:title="modifica"
+                />
+
+        </menu>
+
+
+    </item>
+
+
+
+</menu>

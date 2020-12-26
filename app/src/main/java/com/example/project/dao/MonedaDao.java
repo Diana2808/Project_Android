@@ -14,17 +14,20 @@ import java.util.List;
 public interface MonedaDao {
 
     @Insert
-    void insert(MonedaBD moneda);
+    long insert(MonedaBD moneda);
 
     @Update
-    void update(MonedaBD moneda);
+    int update(MonedaBD moneda);
 
     @Delete
-    void delete(MonedaBD moneda);
+    int delete(MonedaBD moneda);
 
     @Query("SELECT * FROM monede")
     List<MonedaBD> getToateMonedele();
 
-    @Query("SELECT * FROM monede WHERE taraId=:taraId AND caracteristiciId=:caracteristiciId")
-    List<MonedaBD> findRepositoriesForUser(final long taraId,final  long caracteristiciId );
+    @Query("SELECT * FROM monede WHERE taraId=:taraId ")
+    List<MonedaBD> gasireDupaIdTara(final long taraId );
+
+    @Query("SELECT * FROM monede WHERE caracteristiciId=:caracteristiciId ")
+    List<MonedaBD> gasireDupaIdCaracteristici(final long caracteristiciId );
 }
