@@ -15,4 +15,14 @@
     <string name="tv2_acasa">Ne bucurăm să te revedem!</string>
     <string name="tv3_acasa">Aceasta este ultima ta recenzie:</string>
     <string name="fab_icon_content_description">review</string>
+
+    <string-array name="continente">
+        <item>Asia</item>
+        <item>America de Nord</item>
+        <item>America de Sud</item>
+        <item>Europa</item>
+        <item>Africa</item>
+        <item>Australia</item>
+        <item>Antarctida</item>
+    </string-array>
 </resources>

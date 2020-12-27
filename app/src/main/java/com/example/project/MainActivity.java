@@ -7,8 +7,13 @@ import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.example.project.clase.Caracteristici;
+import com.example.project.clase.Moneda;
 import com.example.project.clase.Tara;
 import com.example.project.fragmente.BibliotecaFragment;
 import com.example.project.fragmente.ColectieFragment;
@@ -20,6 +25,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int COD = 210;
     //pentru menu bottomNavigationView
     BottomNavigationView bottomNavigationView;
 
@@ -33,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Tara>  monedeListaColectie=new ArrayList<>();
 
 
-    public static final int COD = 222;
 
 
 
@@ -62,6 +67,11 @@ public class MainActivity extends AppCompatActivity {
                 }else if(item.getItemId()==R.id.fragment_acasa) {
                     fragmentCurent = new AcasaFragment();
                 }else if(item.getItemId()==R.id.fragment_colectiaMea) {
+
+                    Intent intent=new Intent(getApplicationContext(), AdaugInColectieActivity.class);
+                    startActivityForResult(intent, COD);
+
+
                     fragmentCurent = ColectieFragment.newInstance(monedeListaColectie);
                 }else if(item.getItemId()==R.id.fragment_Profil) {
                     fragmentCurent = new ProfilFragment();
@@ -84,18 +94,18 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,new AcasaFragment()).commit();
     }
 
+//pentru transfer de date in fragmentul ColectieFragment
 
-
-    //pentru transferul de informatii dintr-o alta ACTIVITATE
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode==COD && resultCode==RESULT_OK && data!=null){
-            Tara monedaNoua=data.getParcelableExtra(AdaugInColectieActivity.CHEIE_TARA);
-            if(monedaNoua!=null)
+            Tara moneda=data.getParcelableExtra(AdaugInColectieActivity.CHEIE_TARA);
+
+            if( moneda!=null && moneda.getMonede()!=null && moneda.getMonede().getCaracteristici()!=null)
             {
-                monedeListaColectie.add(monedaNoua);
+                monedeListaColectie.add(moneda);
 
                 if(fragmentCurent instanceof ColectieFragment)
                 {
@@ -103,5 +113,30 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+
+    //menu2 -> optionMenu
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.menu1,menu);
+        return true;
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.adaugare_bd ||item.getItemId()==R.id.stergere_bd ||item.getItemId()==R.id.modifica_bd){
+                    Intent intent1=new Intent(getApplicationContext(),AdaugInColectieActivity.class);
+                    startActivity(intent1);
+        }
+        if(item.getItemId()==R.id.info){
+            Intent intent2=new Intent(getApplicationContext(),InfoActivity.class);
+            startActivity(intent2);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -15,7 +15,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.project.AdaugInColectieActivity;
+import com.example.project.MonedaAdapter;
 import com.example.project.R;
+import com.example.project.clase.Caracteristici;
+import com.example.project.clase.Moneda;
 import com.example.project.clase.Tara;
 
 import java.util.ArrayList;
@@ -31,30 +34,29 @@ public class ColectieFragment extends Fragment {
  public static final String CHEIE_1="ceva";
 
 
+
     public ColectieFragment() {
 
     }
 
 
-    public static ColectieFragment newInstance(String param1, String param2) {
-        ColectieFragment fragment = new ColectieFragment();
-        Bundle bundle = new Bundle();
 
-        return fragment;
-    }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view =inflater.inflate(R.layout.fragment_colectie, container, false);
-        btnAdauga=view.findViewById(R.id.btn_adaugare);
         lvColectie=view.findViewById(R.id.lv_colectie);
+        btnAdauga=view.findViewById(R.id.btn_adaugare);
+
+
         btnAdauga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              Intent intent=new Intent(getContext().getApplicationContext(),AdaugInColectieActivity.class);
-              startActivityForResult(intent,COD);
+                // -> buton nefunctional
+             // Intent intent=new Intent(getContext().getApplicationContext(),AdaugInColectieActivity.class);
+             // startActivityForResult(intent,COD);
             }
         });
 
@@ -65,8 +67,13 @@ public class ColectieFragment extends Fragment {
         }
         //creare adapter pentru ListView
         if (getContext() != null) {
-            ArrayAdapter adapter=new ArrayAdapter(getContext().getApplicationContext(),android.R.layout.simple_list_item_1,listaTari);
+           /// ArrayAdapter adapter=new ArrayAdapter(getContext().getApplicationContext(),
+             //    android.R.layout.simple_list_item_1,listaTari);
+           MonedaAdapter adapter = new MonedaAdapter(getContext().getApplicationContext(),
+                   R.layout.lv_row_view_biblioteca,
+                    listaTari, getLayoutInflater());
             lvColectie.setAdapter(adapter);
+            Log.i("dsfddddddd",listaTari.toString());
         }
 
 
@@ -75,10 +82,12 @@ public class ColectieFragment extends Fragment {
     }
 
 
-    //pentru ca informatia trebuie transferata prin activitatea care contine fragmentul in care vrem sa afisam datele, avem nevoie de un newInstance
+    //pentru ca informatia trebuie transferata prin activitatea
+    // care contine fragmentul in care vrem sa afisam datele, avem nevoie de un newInstance
     public static ColectieFragment newInstance(ArrayList<Tara> lista){
         ColectieFragment fragment=new ColectieFragment();
         Bundle bundle=new Bundle();
+
         bundle.putParcelableArrayList(ColectieFragment.CHEIE_1,lista);
         fragment.setArguments(bundle);
         return fragment;
