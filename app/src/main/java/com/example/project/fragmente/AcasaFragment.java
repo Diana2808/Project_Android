@@ -1,66 +1,90 @@
 package com.example.project.fragmente;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
+import com.example.project.AdaugaRecenzie;
 import com.example.project.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AcasaFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class AcasaFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    public static final int REVIEW_REQUEST_CODE = 222;
+    private FloatingActionButton fabReview;
+    private TextView tvMesaj;
+    private RatingBar ratingStelute;
+    private EditText etDescriere;
 
     public AcasaFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static AcasaFragment newInstance(String param1, String param2) {
         AcasaFragment fragment = new AcasaFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+        Bundle bundle = new Bundle();
+
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_acasa, container, false);
+        View view = inflater.inflate(R.layout.fragment_acasa, container, false);
+        initializare(view);
+        afiseazaMesaj();
+        return view;
+    }
+
+    private void initializare(View view) {
+        fabReview = view.findViewById(R.id.fab_parere);
+        tvMesaj = view.findViewById(R.id.tv1_acasa);
+        ratingStelute = view.findViewById(R.id.ratingBar);
+        etDescriere = view.findViewById(R.id.editTextParere);
+        fabReview.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext().getApplicationContext(), AdaugaRecenzie.class);
+                startActivityForResult(intent, REVIEW_REQUEST_CODE);
+            }
+        });
+    }
+
+    //realizam popularea unui textView cu date din fisierul de preferinte
+
+
+    private void afiseazaMesaj(){
+        SharedPreferences preferences = this.getActivity().getSharedPreferences(AdaugaRecenzie.REVIEW_SHARED_PREF,
+                Context.MODE_PRIVATE);
+        String nume = preferences.getString(AdaugaRecenzie.NUME, "");
+        if(nume != null && !nume.isEmpty()){
+            tvMesaj.setText(getString(R.string.acasa_mesaj_intampinare, nume));
+        }
+        etDescriere.setText(preferences.getString(AdaugaRecenzie.DESCRIERE, ""));
+        ratingStelute.setRating(preferences.getFloat(AdaugaRecenzie.RATING, 0));
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REVIEW_REQUEST_CODE) {
+            afiseazaMesaj();
+        }
     }
 }

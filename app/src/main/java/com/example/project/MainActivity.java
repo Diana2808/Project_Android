@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.project.clase.Caracteristici;
 import com.example.project.clase.Moneda;
@@ -20,6 +21,7 @@ import com.example.project.fragmente.ColectieFragment;
 import com.example.project.fragmente.AcasaFragment;
 import com.example.project.fragmente.ProfilFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -37,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
     //lista de monede din colectie
     private ArrayList<Tara>  monedeListaColectie=new ArrayList<>();
-
-
 
 
 
@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                     fragmentCurent = BibliotecaFragment.newInstance(tariListaJSON);
                 }else if(item.getItemId()==R.id.fragment_acasa) {
                     fragmentCurent = new AcasaFragment();
+
                 }else if(item.getItemId()==R.id.fragment_colectiaMea) {
 
                     Intent intent=new Intent(getApplicationContext(), AdaugInColectieActivity.class);
@@ -88,10 +89,8 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-
-        // ca optiune default, vom face BibliotecaFragment
-
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,new AcasaFragment()).commit();
+
     }
 
 //pentru transfer de date in fragmentul ColectieFragment

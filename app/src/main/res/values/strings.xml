@@ -16,6 +16,8 @@
     <string name="tv3_acasa">Aceasta este ultima ta recenzie:</string>
     <string name="fab_icon_content_description">review</string>
 
+    <string name="acasa_mesaj_intampinare">Buna, %1$s!</string>
+
     <string-array name="continente">
         <item>Asia</item>
         <item>America de Nord</item>

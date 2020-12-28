@@ -154,7 +154,7 @@
                     android:id="@+id/tiet_diametru"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Diametru"
+                    android:hint="Diametru (cm)"
                     android:textColorHint="#541260"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -166,7 +166,7 @@
                     android:id="@+id/tiet_grosime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Grosime"
+                    android:hint="Grosime (mm)"
                     android:textColorHint="#541260"/>
 
             </com.google.android.material.textfield.TextInputLayout>

@@ -126,7 +126,7 @@ public class AdaugInColectieActivity extends AppCompatActivity {
         ||
                 Integer.parseInt(tietDiamentru.getText().toString().substring(0,1))>3){
             Toast.makeText(getApplicationContext(),
-                    "Diametrul trebuie sa contina la sfarsit 'cm'! Dimesiunea mai mica de 3 trebuie introdusa la incpeut!",
+                    "Diametrul trebuie sa contina la sfarsit 'cm'! Dimesiunea mai mica de 3 trebuie introdusa la inceput!",
                     Toast.LENGTH_LONG)
                     .show();
             return false;
@@ -138,7 +138,7 @@ public class AdaugInColectieActivity extends AppCompatActivity {
             //daca ii dai doar litere iti va crapa, inca ma gandesc cum sa modific :/
 
             Toast.makeText(getApplicationContext(),
-                    "Grosimea trebuie sa contina la sfarsit 'mm'! Grosimea mai mica de 3 trebuie introdusa la inceput !",
+                    "Grosimea trebuie sa contina la sfarsit 'mm'! Grosimea mai mica de 3 trebuie introdusa la inceput!",
                     Toast.LENGTH_LONG)
                     .show();
             return false;
