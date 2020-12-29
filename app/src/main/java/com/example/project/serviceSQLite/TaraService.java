@@ -9,6 +9,7 @@ import com.example.project.claseBD.TaraBD;
 import com.example.project.dao.TaraDao;
 import com.example.project.database.DatabaseManager;
 
+import java.util.List;
 import java.util.concurrent.Callable;
 
 public class TaraService {
@@ -35,7 +36,7 @@ public class TaraService {
                     return null;
 
                 }
-                taraBD.setId_tara(id);
+                taraBD.setId(id);
                 return taraBD;
             }
 
@@ -80,6 +81,20 @@ public class TaraService {
 
             }
         };
+        taskRunner.executeAsync(callable,callback);
+    }
+
+
+    public void getAll(Callback<List<TaraBD>> callback){
+        Callable<List<TaraBD>> callable=new Callable<List<TaraBD>>() {
+
+            @Override
+            public List<TaraBD> call() {
+                return taraDao.getAllTara();
+
+            }
+        };
+
         taskRunner.executeAsync(callable,callback);
     }
 

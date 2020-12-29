@@ -4,8 +4,12 @@ import android.content.Context;
 
 import com.example.project.asyncTask.AsyncTaskRunner;
 import com.example.project.asyncTask.Callback;
+import com.example.project.claseBD.CaracteristiciBD;
 import com.example.project.claseBD.MonedaBD;
+import com.example.project.claseBD.TaraBD;
+import com.example.project.dao.CaracteristiciDao;
 import com.example.project.dao.MonedaDao;
+import com.example.project.dao.TaraDao;
 import com.example.project.database.DatabaseManager;
 
 import java.util.List;
@@ -14,11 +18,15 @@ import java.util.concurrent.Callable;
 public class MonedaService {
 
     private final MonedaDao monedaDao;
+    private final TaraDao taraDao;
+    private final CaracteristiciDao caracteristiciDao;
     private final AsyncTaskRunner taskRunner;
 
     public MonedaService(Context context) {
 
         monedaDao= DatabaseManager.getInstance(context).getMonedaDao();
+        taraDao= DatabaseManager.getInstance(context).getTaraDao();
+        caracteristiciDao= DatabaseManager.getInstance(context).getCaracteristiciDao();
         taskRunner=new AsyncTaskRunner();
 
     }
@@ -41,6 +49,23 @@ public class MonedaService {
         taskRunner.executeAsync(callable,callback);
     }
 
+    //SELECT TOT -> AICI VA FI ADAUGAT CEVA NOU
+
+    public void getAllToate(Callback<List<MonedaBD>> callback){
+        Callable<List<MonedaBD>> callable=new Callable<List<MonedaBD>>() {
+            //callablel returneaza din baza de date lista de obiecte
+
+            @Override
+            public List<MonedaBD> call() {
+
+                return monedaDao.getToateMonedele();
+
+            }
+        };
+        //callbackul ia lista si o proceseaza
+        //callback = bucata din activitate
+        taskRunner.executeAsync(callable,callback);
+    }
 
 
     //INSERT
@@ -59,7 +84,7 @@ public class MonedaService {
                     return null;
 
                 }
-                moneda.setIdMoneda(id);
+                moneda.setId(id);
                 return moneda;
             }
 
@@ -67,6 +92,36 @@ public class MonedaService {
         //ce returneaza callable asta tb sa am in callback
         taskRunner.executeAsync(callable,callback);
     }
+
+    public  void insertAll(Callback<MonedaBD> callbackM, final MonedaBD moneda, final TaraBD tara, final CaracteristiciBD carac){
+
+
+        Callable<MonedaBD> callable=new Callable<MonedaBD>() {
+            @Override
+            public MonedaBD call() {
+                if (moneda == null) {
+                    return null;
+                }
+                long idTara = taraDao.insert(tara);
+                long idCarac = caracteristiciDao.insert(carac);
+                moneda.setId_tara(idTara);
+                moneda.setId_caracteristici(idCarac);
+                //daca id = -1 inseamna ca nu a mers insertul
+                long id = monedaDao.insert(moneda);
+                if(id==-1){
+                    return null;
+
+                }
+                moneda.setId(id);
+                return moneda;
+            }
+
+        };
+        //ce returneaza callable asta tb sa am in callback
+        taskRunner.executeAsync(callable,callbackM);
+    }
+
+
 
 
     //UPDATE

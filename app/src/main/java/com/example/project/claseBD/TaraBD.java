@@ -9,8 +9,8 @@ import androidx.room.PrimaryKey;
 public class TaraBD {
 
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name="id_tara")
-    private long id_tara;
+    @ColumnInfo(name="id")
+    private long id;
 
 
     @ColumnInfo(name="continent")
@@ -19,8 +19,8 @@ public class TaraBD {
     @ColumnInfo(name="denumire_tara")
     private  String denumireTara;
 
-    public TaraBD(long id_tara, String continent, String denumireTara) {
-        this.id_tara = id_tara;
+    public TaraBD(long id, String continent, String denumireTara) {
+        this.id = id;
         this.continent = continent;
         this.denumireTara = denumireTara;
     }
@@ -31,12 +31,12 @@ public class TaraBD {
         this.denumireTara = denumireTara;
     }
 
-    public long getId_tara() {
-        return id_tara;
+    public long getId() {
+        return id;
     }
 
-    public void setId_tara(long id_tara) {
-        this.id_tara = id_tara;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getContinent() {
@@ -58,7 +58,7 @@ public class TaraBD {
     @Override
     public String toString() {
         return "TaraBD{" +
-                "idTara=" + id_tara +
+                "idTara=" + id+
                 ", continent='" + continent + '\'' +
                 ", denumireTara='" + denumireTara + '\'' +
                 '}';

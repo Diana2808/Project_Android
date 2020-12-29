@@ -6,9 +6,11 @@ import com.example.project.asyncTask.AsyncTaskRunner;
 import com.example.project.asyncTask.Callback;
 import com.example.project.claseBD.CaracteristiciBD;
 import com.example.project.claseBD.MonedaBD;
+import com.example.project.claseBD.TaraBD;
 import com.example.project.dao.CaracteristiciDao;
 import com.example.project.database.DatabaseManager;
 
+import java.util.List;
 import java.util.concurrent.Callable;
 
 public class CaracteristiciService {
@@ -39,7 +41,7 @@ public class CaracteristiciService {
                     return null;
 
                 }
-                caracteristiciBD.setId_caracteristici(id);
+                caracteristiciBD.setId(id);
                 return caracteristiciBD;
             }
 
@@ -88,5 +90,18 @@ public class CaracteristiciService {
     }
 
 
+
+    public void getAll(Callback<List<CaracteristiciBD>> callback){
+        Callable<List<CaracteristiciBD>> callable=new Callable<List<CaracteristiciBD>>() {
+
+            @Override
+            public List<CaracteristiciBD> call() {
+                return caracteristiciDao.getAllCaracteristici();
+
+            }
+        };
+
+        taskRunner.executeAsync(callable,callback);
+    }
 
 }

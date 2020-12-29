@@ -3,6 +3,7 @@ package com.example.project.fragmente;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.arch.core.executor.TaskExecutor;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -38,17 +39,16 @@ public class ColectieFragment extends Fragment {
  private Button btnAdauga;
  private ListView lvColectie;
  private List<Tara> listaTari=new ArrayList<>();
- private List<TaraBD> listaTariBD=new ArrayList<>();
  public static final String CHEIE_1="ceva";
+
 
  public TaraService taraService;
  public CaracteristiciService caracteristiciService;
  public MonedaService monedaService;
 
-    private  long indexCaract=-1;
-    private  long indexTara=-1;
-
-
+   private List<MonedaBD> lm=new ArrayList<>();
+   private List<TaraBD> lt=new ArrayList<>();
+   private List<CaracteristiciBD> lc=new ArrayList<>();
 
 
     public ColectieFragment() {
@@ -81,13 +81,14 @@ public class ColectieFragment extends Fragment {
 
         if (getArguments() != null) {
 
-            //IA-MI DIN BAZA DE DATE
+            //IA-MI DIN BAZA DE DATE  -> inca nu merge selectul, nu stiu de ce
 
+            afisareDinBazaDeDate();
+            Toast.makeText(getContext().getApplicationContext(),listaTari.toString(),Toast.LENGTH_LONG).show();
             listaTari = getArguments().getParcelableArrayList(CHEIE_1);
-            ///AICI TREBUIE SA APELAM INSERARE IN BAZA DE DATE
-
-if(listaTari.size()>0){
-    sincronizareBazaDeDate(listaTari);
+            //INSERAREA IN BAZA DE DATE
+            if(listaTari.size()>0){
+                 sincronizareBazaDeDate(listaTari);
 
 }
 
@@ -129,77 +130,143 @@ if(listaTari.size()>0){
     }
 
 
+    //INSERARE PROPRIUZISA
+    //trec datele din lista de Tari in elemente de tip TaraBD si le inserez in bd
     private void sincronizareBazaDeDate(List<Tara> lista){
 
 
         for(int i=0;i<lista.size();i++){
+
             String continent=lista.get(i).getContinent();
             String denTara=lista.get(i).getDenumire();
 
-
             TaraBD t=new TaraBD(continent,denTara);
-            taraService.insert(inserareInBDTCallback(), t);
+
+
 
             String grosime=lista.get(i).getMonede().getCaracteristici().getGrosime();
             String diametru=lista.get(i).getMonede().getCaracteristici().getDiametru();
             String culoare=lista.get(i).getMonede().getCaracteristici().getCuloare();
             String material=lista.get(i).getMonede().getCaracteristici().getMaterial();
 
-
             CaracteristiciBD c=new CaracteristiciBD(grosime,diametru,culoare,material);
-            caracteristiciService.insert(inserareInBDCCallback(),c);
+
+
 
             int an=lista.get(i).getMonede().getAn();
             String valoare=lista.get(i).getMonede().getValoare();
             String denumireMoneda=lista.get(i).getMonede().getDenumire();
-            Toast.makeText(getContext().getApplicationContext(),String.valueOf(indexTara)+String.valueOf(indexCaract),
-                    Toast.LENGTH_SHORT).show();
-            MonedaBD m=new MonedaBD(an, valoare,denumireMoneda,indexTara,indexCaract);
 
-            monedaService.insert(inserareInBDMCallback(),m);
+            MonedaBD m=new MonedaBD(an, valoare,denumireMoneda,0 ,0);
+
+            //inserarea propriuzisa
+            monedaService.insertAll(inserareInBDMCallback(),m,t,c);
+
         }
 
 
+
     }
 
 
-    private Callback<TaraBD> inserareInBDTCallback(){
-        return new Callback<TaraBD>() {
+
+    private void afisareDinBazaDeDate(){
+        taraService.getAll(getAllTariCallBack());
+        caracteristiciService.getAll(getAllCaracteristiciCallBack());
+        monedaService.getAll(getAllMonedeCallBack());
+
+        if(lm!=null && lc!=null && lt!=null){
+            for(int i=0;i<lm.size();i++) {
+                for(int j=0;j<lc.size();j++){
+                    Log.i("IDurile C!:",String.valueOf(lc.get(j).getId()));
+
+                    for(int k=0;k<lt.size();k++){
+                        if(lm.get(i).getId_caracteristici()==lc.get(j).getId()
+                                && lm.get(i).getId_tara()==lt.get(k).getId()){
+
+                            String grosime=lc.get(j).getGrosime();
+                            String diametru=lc.get(j).getDiametru();
+                            String culoare=lc.get(j).getCuloare();
+                            String material=lc.get(j).getMaterial();
+
+                            Caracteristici c=new Caracteristici(grosime,diametru,culoare,material);
+
+                            int an=lm.get(i).getAn();
+                            String valoare=lm.get(i).getValoare();
+                            String denumireMon=lm.get(i).getDenumire();
+
+                            Moneda m=new Moneda(an,valoare,denumireMon,c);
+
+                            String continent=lt.get(k).getContinent();
+                            String dentara=lt.get(k).getDenumireTara();
+
+                            Tara t=new Tara(dentara,continent,m);
+
+                            listaTari.add(t);
+                        }
+                    }
+
+                }
+
+
+            }
+
+        }
+
+    }
+
+    private Callback<List<MonedaBD>> getAllMonedeCallBack(){
+        return new Callback<List<MonedaBD>>() {
             @Override
-            public void runResultOnUiThread(TaraBD result) {
-              /*  if(result!=null){
-                }*/
+            public void runResultOnUiThread(List<MonedaBD> result) {
+                if(result!=null){
+                    lm.clear();
+                    lm.addAll(result);
+                    Log.i("CALLBACK AFISARE:",lm.toString());
+                    }
+                }
+            };
+        }
 
-                indexTara=result.getId_tara();
 
+    private Callback<List<TaraBD>> getAllTariCallBack(){
+        return new Callback<List<TaraBD>>() {
+            @Override
+            public void runResultOnUiThread(List<TaraBD> result) {
+                if(result!=null){
+                    lt.clear();
+                    lt.addAll(result);
+                    Log.i("CALLBACK AFISARE:",lt.toString());
 
+                }
+            }
+        };
+    }
 
+    private Callback<List<CaracteristiciBD>> getAllCaracteristiciCallBack(){
+        return new Callback<List<CaracteristiciBD>>() {
+            @Override
+            public void runResultOnUiThread(List<CaracteristiciBD> result) {
+                if(result!=null){
+                    lc.clear();
+                    lc.addAll(result);
+                    Log.i("CALLBACK AFISARE:",lc.toString());
+
+                }
             }
         };
     }
 
 
-    private  Callback<CaracteristiciBD> inserareInBDCCallback(){
-        return new Callback<CaracteristiciBD>() {
-            @Override
-            public void runResultOnUiThread(CaracteristiciBD result) {
-              /*  if(result!=null){
-                }*/
 
-                indexCaract=result.getId_caracteristici();
 
-                Log.i("CALLBACK INSERT " ,result.toString());
 
-            }
-        };
-    }
+
 
     private  Callback<MonedaBD> inserareInBDMCallback(){
         return new Callback<MonedaBD>() {
             @Override
             public void runResultOnUiThread(MonedaBD result) {
-              /*  if(result!=null){
-                }*/
 
                 Log.i("CALLBACK INSERT " ,result.toString());
             }

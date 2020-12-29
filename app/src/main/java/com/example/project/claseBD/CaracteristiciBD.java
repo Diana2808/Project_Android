@@ -14,8 +14,8 @@ import com.example.project.clase.Moneda;
 @Entity(tableName = "caracteristici")
 public class CaracteristiciBD {
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id_caracteristici")
-    private long id_caracteristici;
+    @ColumnInfo(name = "id")
+    private long id;
 
     @ColumnInfo(name = "grosime")
     private String grosime;
@@ -29,12 +29,12 @@ public class CaracteristiciBD {
     @ColumnInfo(name = "material")
     private String material;
 
-    public long getId_caracteristici() {
-        return id_caracteristici;
+    public long getId() {
+        return id;
     }
 
-    public void setId_caracteristici(long id_caracteristici) {
-        this.id_caracteristici = id_caracteristici;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getGrosime() {
@@ -72,7 +72,7 @@ public class CaracteristiciBD {
     @Override
     public String toString() {
         return "CaracteristiciBD{" +
-                "id_caracteristici=" + id_caracteristici +
+                "id_caracteristici=" + id +
                 ", grosime='" + grosime + '\'' +
                 ", diametru='" + diametru + '\'' +
                 ", culoare='" + culoare + '\'' +
@@ -81,8 +81,8 @@ public class CaracteristiciBD {
     }
 
 
-    public CaracteristiciBD(long id_caracteristici, String grosime, String diametru, String culoare, String material) {
-        this.id_caracteristici = id_caracteristici;
+    public CaracteristiciBD(long id, String grosime, String diametru, String culoare, String material) {
+        this.id = id;
         this.grosime = grosime;
         this.diametru = diametru;
         this.culoare = culoare;

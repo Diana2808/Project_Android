@@ -44,7 +44,7 @@ public abstract class DatabaseManager extends RoomDatabase {
             //pentru atunci cand intra in metoda de doua ori, pe al doilea sa il blocheze
             synchronized (DatabaseManager.class){
                 if(bazadedate==null){
-                    bazadedate= Room.databaseBuilder(context,DatabaseManager.class,"ColectieMonedeCuSucces")
+                    bazadedate= Room.databaseBuilder(context,DatabaseManager.class,"C&D")
                             .fallbackToDestructiveMigration()
                             //fallbackToDestructiveMigration()
                             //-> cand creem o bd si vrem sa ne intorcem
