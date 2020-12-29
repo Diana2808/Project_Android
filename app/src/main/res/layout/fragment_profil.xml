@@ -1,17 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#BC96C3"
     tools:context=".fragmente.ProfilFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="FRAGMENTUL PROFIL"
-        android:textColor="#45091D"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_adaug_Prieteni"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Adaug prieteni colectionari !"
+            android:textColor="#45091D"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:textSize="30dp"
+            android:fontFamily="cursive"/>
+        <TextView
+            android:id="@+id/tv_nume"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Nume"
+            android:textColor="#45091D"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="16dp"
+            android:textSize="15dp"
+            android:fontFamily="casual"/>
+
+    <EditText
+        android:id="@+id/ettpn_nume"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Nume"
+        android:inputType="textPersonName"
+        android:layout_gravity="center"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+
 
         />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="16dp"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiet_prenume"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="prenume"
+                android:layout_gravity="center"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_nrMonede"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Numar de monede"
+            android:textColor="#45091D"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="16dp"
+            android:textSize="15dp"
+            android:fontFamily="casual"/>
+        <EditText
+            android:id="@+id/etn_numar_monede"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="87dp">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_AdaugFB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:backgroundTint="#ffb"
+                android:clickable="true"
+                android:src="@drawable/friends"
+
+                />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_Stergere"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:backgroundTint="#ffb"
+                android:clickable="true"
+                android:src="@drawable/eraser"
+
+                />
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_StergereFields"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:backgroundTint="#ffb"
+                android:clickable="true"
+                android:src="@drawable/clear"
+
+
+
+                />
+
+        </LinearLayout>
+
+
+        <ListView
+            android:id="@+id/lv_prieteni"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="5dp" />
+
+    </LinearLayout>
+
+
 
 </FrameLayout>

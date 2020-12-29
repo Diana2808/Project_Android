@@ -3,9 +3,12 @@ package com.example.project.dao;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.project.claseBD.CaracteristiciBD;
+
+import java.util.List;
 
 @Dao
 public interface CaracteristiciDao {
@@ -18,4 +21,8 @@ public interface CaracteristiciDao {
 
     @Delete
     int delete(CaracteristiciBD caracteristiciBD);
+
+
+    @Query("SELECT * FROM caracteristici")
+    List<CaracteristiciBD> getAllCaracteristici();
 }

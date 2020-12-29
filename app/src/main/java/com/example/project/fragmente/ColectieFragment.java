@@ -17,12 +17,20 @@ import android.widget.Toast;
 import com.example.project.AdaugInColectieActivity;
 import com.example.project.MonedaAdapter;
 import com.example.project.R;
+import com.example.project.asyncTask.Callback;
 import com.example.project.clase.Caracteristici;
 import com.example.project.clase.Moneda;
 import com.example.project.clase.Tara;
+import com.example.project.claseBD.CaracteristiciBD;
+import com.example.project.claseBD.MonedaBD;
+import com.example.project.claseBD.TaraBD;
+import com.example.project.serviceSQLite.CaracteristiciService;
+import com.example.project.serviceSQLite.MonedaService;
+import com.example.project.serviceSQLite.TaraService;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 
 public class ColectieFragment extends Fragment {
@@ -30,8 +38,16 @@ public class ColectieFragment extends Fragment {
  private Button btnAdauga;
  private ListView lvColectie;
  private List<Tara> listaTari=new ArrayList<>();
- public static final int COD=222;
+ private List<TaraBD> listaTariBD=new ArrayList<>();
  public static final String CHEIE_1="ceva";
+
+ public TaraService taraService;
+ public CaracteristiciService caracteristiciService;
+ public MonedaService monedaService;
+
+    private  long indexCaract=-1;
+    private  long indexTara=-1;
+
 
 
 
@@ -49,7 +65,9 @@ public class ColectieFragment extends Fragment {
         View view =inflater.inflate(R.layout.fragment_colectie, container, false);
         lvColectie=view.findViewById(R.id.lv_colectie);
         btnAdauga=view.findViewById(R.id.btn_adaugare);
-
+        taraService=new TaraService(getContext().getApplicationContext());
+        caracteristiciService=new CaracteristiciService(getContext().getApplicationContext());
+        monedaService=new MonedaService(getContext().getApplicationContext());
 
         btnAdauga.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +80,17 @@ public class ColectieFragment extends Fragment {
 
 
         if (getArguments() != null) {
+
+            //IA-MI DIN BAZA DE DATE
+
             listaTari = getArguments().getParcelableArrayList(CHEIE_1);
+            ///AICI TREBUIE SA APELAM INSERARE IN BAZA DE DATE
+
+if(listaTari.size()>0){
+    sincronizareBazaDeDate(listaTari);
+
+}
+
             Log.i("FRAGMENT COLECTIE", listaTari.toString());
         }
         //creare adapter pentru ListView
@@ -99,6 +127,87 @@ public class ColectieFragment extends Fragment {
         ArrayAdapter adapter = (ArrayAdapter) lvColectie.getAdapter();
         adapter.notifyDataSetChanged();
     }
+
+
+    private void sincronizareBazaDeDate(List<Tara> lista){
+
+
+        for(int i=0;i<lista.size();i++){
+            String continent=lista.get(i).getContinent();
+            String denTara=lista.get(i).getDenumire();
+
+
+            TaraBD t=new TaraBD(continent,denTara);
+            taraService.insert(inserareInBDTCallback(), t);
+
+            String grosime=lista.get(i).getMonede().getCaracteristici().getGrosime();
+            String diametru=lista.get(i).getMonede().getCaracteristici().getDiametru();
+            String culoare=lista.get(i).getMonede().getCaracteristici().getCuloare();
+            String material=lista.get(i).getMonede().getCaracteristici().getMaterial();
+
+
+            CaracteristiciBD c=new CaracteristiciBD(grosime,diametru,culoare,material);
+            caracteristiciService.insert(inserareInBDCCallback(),c);
+
+            int an=lista.get(i).getMonede().getAn();
+            String valoare=lista.get(i).getMonede().getValoare();
+            String denumireMoneda=lista.get(i).getMonede().getDenumire();
+            Toast.makeText(getContext().getApplicationContext(),String.valueOf(indexTara)+String.valueOf(indexCaract),
+                    Toast.LENGTH_SHORT).show();
+            MonedaBD m=new MonedaBD(an, valoare,denumireMoneda,indexTara,indexCaract);
+
+            monedaService.insert(inserareInBDMCallback(),m);
+        }
+
+
+    }
+
+
+    private Callback<TaraBD> inserareInBDTCallback(){
+        return new Callback<TaraBD>() {
+            @Override
+            public void runResultOnUiThread(TaraBD result) {
+              /*  if(result!=null){
+                }*/
+
+                indexTara=result.getId_tara();
+
+
+
+            }
+        };
+    }
+
+
+    private  Callback<CaracteristiciBD> inserareInBDCCallback(){
+        return new Callback<CaracteristiciBD>() {
+            @Override
+            public void runResultOnUiThread(CaracteristiciBD result) {
+              /*  if(result!=null){
+                }*/
+
+                indexCaract=result.getId_caracteristici();
+
+                Log.i("CALLBACK INSERT " ,result.toString());
+
+            }
+        };
+    }
+
+    private  Callback<MonedaBD> inserareInBDMCallback(){
+        return new Callback<MonedaBD>() {
+            @Override
+            public void runResultOnUiThread(MonedaBD result) {
+              /*  if(result!=null){
+                }*/
+
+                Log.i("CALLBACK INSERT " ,result.toString());
+            }
+        };
+    }
+
+
+
 
 
 

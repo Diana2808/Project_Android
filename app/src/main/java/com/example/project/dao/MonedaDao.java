@@ -25,9 +25,4 @@ public interface MonedaDao {
     @Query("SELECT * FROM monede")
     List<MonedaBD> getToateMonedele();
 
-    @Query("SELECT * FROM monede WHERE taraId=:taraId ")
-    List<MonedaBD> gasireDupaIdTara(final long taraId );
-
-    @Query("SELECT * FROM monede WHERE caracteristiciId=:caracteristiciId ")
-    List<MonedaBD> gasireDupaIdCaracteristici(final long caracteristiciId );
 }

@@ -2,6 +2,7 @@ package com.example.project.claseBD;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "tari")
@@ -20,6 +21,12 @@ public class TaraBD {
 
     public TaraBD(long id_tara, String continent, String denumireTara) {
         this.id_tara = id_tara;
+        this.continent = continent;
+        this.denumireTara = denumireTara;
+    }
+
+    @Ignore
+    public TaraBD(String continent, String denumireTara) {
         this.continent = continent;
         this.denumireTara = denumireTara;
     }

@@ -6,26 +6,18 @@ import android.os.Parcelable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.example.project.clase.Caracteristici;
 
+import java.io.Serializable;
+
 import static androidx.room.ForeignKey.CASCADE;
 
-@Entity(tableName = "monede",
-        foreignKeys = {
-        @ForeignKey(entity = TaraBD.class,
-                parentColumns = "id_tara",
-                childColumns = "taraId" ,
-                onDelete=CASCADE,
-        onUpdate = CASCADE),
-        @ForeignKey(entity = CaracteristiciBD.class,
-        parentColumns = "id_caracteristici",
-        childColumns = "caracteristiciId",
-        onDelete=CASCADE,
-        onUpdate = CASCADE)})
+@Entity(tableName = "monede")
 
-public class MonedaBD {
+public class MonedaBD implements Serializable {
 
 
     @PrimaryKey(autoGenerate = true)
@@ -41,8 +33,10 @@ public class MonedaBD {
     @ColumnInfo(name="denumire_moneda")
     private String denumire;
 
+    @ColumnInfo(name = "id_tara")
     private long taraId;
 
+    @ColumnInfo(name = "id_caracteristici")
     private long caracteristiciId;
 
 
@@ -97,6 +91,15 @@ public class MonedaBD {
 
     public MonedaBD(long idMoneda, int an, String valoare, String denumire, long taraId, long caracteristiciId) {
         this.idMoneda = idMoneda;
+        this.an = an;
+        this.valoare = valoare;
+        this.denumire = denumire;
+        this.taraId = taraId;
+        this.caracteristiciId = caracteristiciId;
+    }
+
+@Ignore
+    public MonedaBD(int an, String valoare, String denumire, long taraId, long caracteristiciId) {
         this.an = an;
         this.valoare = valoare;
         this.denumire = denumire;

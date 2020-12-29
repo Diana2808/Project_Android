@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.example.project.clase.Moneda;
@@ -82,6 +83,15 @@ public class CaracteristiciBD {
 
     public CaracteristiciBD(long id_caracteristici, String grosime, String diametru, String culoare, String material) {
         this.id_caracteristici = id_caracteristici;
+        this.grosime = grosime;
+        this.diametru = diametru;
+        this.culoare = culoare;
+        this.material = material;
+    }
+
+
+    @Ignore
+    public CaracteristiciBD(String grosime, String diametru, String culoare, String material) {
         this.grosime = grosime;
         this.diametru = diametru;
         this.culoare = culoare;

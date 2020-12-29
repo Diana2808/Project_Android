@@ -13,7 +13,7 @@ import com.example.project.dao.CaracteristiciDao;
 import com.example.project.dao.MonedaDao;
 import com.example.project.dao.TaraDao;
 
-@Database(entities = {TaraBD.class, MonedaBD.class, CaracteristiciBD.class},version = 1)
+@Database(entities = {TaraBD.class, MonedaBD.class, CaracteristiciBD.class},version = 1,exportSchema = false)
 public abstract class DatabaseManager extends RoomDatabase {
 
     //o singura conexiune in tot proiectul la baza asta de date
@@ -44,7 +44,7 @@ public abstract class DatabaseManager extends RoomDatabase {
             //pentru atunci cand intra in metoda de doua ori, pe al doilea sa il blocheze
             synchronized (DatabaseManager.class){
                 if(bazadedate==null){
-                    bazadedate= Room.databaseBuilder(context,DatabaseManager.class,"ColectieMonede")
+                    bazadedate= Room.databaseBuilder(context,DatabaseManager.class,"ColectieMonedeCuSucces")
                             .fallbackToDestructiveMigration()
                             //fallbackToDestructiveMigration()
                             //-> cand creem o bd si vrem sa ne intorcem
