@@ -128,10 +128,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId()==R.id.adaugare_bd ||item.getItemId()==R.id.stergere_bd ||item.getItemId()==R.id.modifica_bd){
-                    Intent intent1=new Intent(getApplicationContext(),AdaugInColectieActivity.class);
-                    startActivity(intent1);
-        }
+
         if(item.getItemId()==R.id.info){
             Intent intent2=new Intent(getApplicationContext(),InfoActivity.class);
             startActivity(intent2);

@@ -40,7 +40,7 @@ public interface MonedaDao {
 
     @Query("SELECT t.denumire_tara,t.continent,m.valoare,m.denumire_moneda," +
             "m.an,c.diametru,c.grosime,c.material,c.culoare FROM tari t,monede m, caracteristici c WHERE " +
-            "m.id_caracteristici=c.id AND m.id_tara=t.id AND continent LIKE 'Asia' AND t.denumire_tara LIKE 'Japonia'")
+            "m.id_caracteristici=c.id AND m.id_tara=t.id AND continent LIKE 'Europa' AND t.denumire_tara LIKE 'Romania'")
     List<ListaMonedeTabele> getMonedeDupaTara();
 
 }

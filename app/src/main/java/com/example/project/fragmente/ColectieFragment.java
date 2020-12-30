@@ -1,9 +1,7 @@
 package com.example.project.fragmente;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -52,7 +50,9 @@ public class ColectieFragment extends Fragment {
    private List<TaraBD> lt=new ArrayList<>();
    private List<CaracteristiciBD> lc=new ArrayList<>();
 
-   private boolean i=false;
+   private boolean iAn=false;
+   private boolean iTara=false;
+
 
     public ColectieFragment() {
 
@@ -68,7 +68,7 @@ public class ColectieFragment extends Fragment {
         View view =inflater.inflate(R.layout.fragment_colectie, container, false);
         lvColectie=view.findViewById(R.id.lv_colectie);
         btnAn =view.findViewById(R.id.btn_peste2000);
-        btnTara=view.findViewById(R.id.btn_filtruPeContinent);
+        btnTara=view.findViewById(R.id.btn_filtruPeRomania);
         taraService=new TaraService(getContext().getApplicationContext());
         caracteristiciService=new CaracteristiciService(getContext().getApplicationContext());
         monedaService=new MonedaService(getContext().getApplicationContext());
@@ -78,15 +78,20 @@ public class ColectieFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if(listaTari!=null && i==false){
+                if(listaTari!=null && iAn==false){
                     listaTari.clear();
                     monedaService.getAllAn(callbackGetPeste2000());
                     listaTari = getArguments().getParcelableArrayList(CHEIE_1);
-
+                    iAn=true;
+                    btnAn.setText("Toata lista !");
                 }else{
-                    i=true;
+
                     listaTari.clear();
                     monedaService.getAll2(callbackGetAll());
+                    listaTari = getArguments().getParcelableArrayList(CHEIE_1);
+                    iAn=false;
+                    btnAn.setText("Peste anii 2000");
+
                 }
             }
         });
@@ -94,7 +99,20 @@ public class ColectieFragment extends Fragment {
         btnTara.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               monedaService.getAllTara(callbackGetDupaTara());
+                if(listaTari!=null && iTara==false){
+                    listaTari.clear();
+                    monedaService.getAllTara(callbackGetDupaTara());
+                    listaTari = getArguments().getParcelableArrayList(CHEIE_1);
+                    iTara=true;
+                    btnTara.setText("Toata lista !");
+                }else{
+
+                    listaTari.clear();
+                    monedaService.getAll2(callbackGetAll());
+                    listaTari = getArguments().getParcelableArrayList(CHEIE_1);
+                    iTara=false;
+                    btnTara.setText("Monede din Romania");
+                }
             }
         });
 

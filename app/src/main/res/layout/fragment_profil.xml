@@ -95,7 +95,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="88dp"
             android:layout_gravity="center"
             android:layout_marginBottom="5dp">
 
@@ -109,11 +109,12 @@
                 android:layout_marginRight="5dp"
                 android:backgroundTint="#ffb"
                 android:clickable="true"
-                android:src="@drawable/friends"
                 android:paddingBottom="6dp"
+                android:src="@drawable/friends"
 
 
                 />
+
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab_Stergere"
                 android:layout_width="wrap_content"
@@ -124,11 +125,12 @@
                 android:layout_marginRight="5dp"
                 android:backgroundTint="#ffb"
                 android:clickable="true"
-                android:src="@drawable/clear"
                 android:paddingBottom="6dp"
+                android:src="@drawable/clear"
 
 
                 />
+
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab_StergereFields"
                 android:layout_width="wrap_content"
@@ -139,9 +141,8 @@
                 android:layout_marginRight="5dp"
                 android:backgroundTint="#ffb"
                 android:clickable="true"
-                android:src="@drawable/eraser"
                 android:paddingBottom="6dp"
-
+                android:src="@drawable/eraser"
 
 
                 />

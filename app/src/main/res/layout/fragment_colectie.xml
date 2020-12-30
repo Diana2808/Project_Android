@@ -9,43 +9,58 @@
     tools:context=".fragmente.ColectieFragment"
     android:background="@drawable/pinkmoney">
 
-    <Button
-        android:id="@+id/btn_peste2000"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout_butoane"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginBottom="40dp"
-        android:background="@drawable/buton_adaugare"
-        android:clickable="true"
-        android:fontFamily="casual"
-        android:padding="5dp"
-        android:text="Peste anii 2000"
-        android:textColor="#fff"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scrollId"
         app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@id/lv_colectie"
-        app:layout_constraintVertical_bias="0.927" />
-
-    <Button
-        android:id="@+id/btn_filtruPeContinent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginBottom="40dp"
-        android:background="@drawable/buton_adaugare"
-        android:clickable="true"
-        android:fontFamily="casual"
-        android:padding="5dp"
-        android:text="Pe continentul Asia"
-        android:textColor="#fff"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.338"
-        app:layout_constraintStart_toEndOf="@id/btn_peste2000"
-        app:layout_constraintTop_toBottomOf="@id/lv_colectie" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="horizontal"
+        >
+        <Button
+            android:id="@+id/btn_peste2000"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@drawable/buton_adaugare"
+            android:clickable="true"
+            android:fontFamily="casual"
+            android:padding="5dp"
+            android:text="Peste anii 2000"
+            android:textColor="#fff"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="30dp"
+
+
+            app:layout_constraintTop_toBottomOf="@id/lv_colectie"
+            app:layout_constraintVertical_bias="0.927" />
+
+        <Button
+            android:id="@+id/btn_filtruPeRomania"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/buton_adaugare"
+            android:clickable="true"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="Monede din Romania"
+            android:textColor="#fff"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.338"
+            app:layout_constraintStart_toEndOf="@id/btn_peste2000"
+            app:layout_constraintTop_toBottomOf="@id/lv_colectie"
+            android:layout_marginLeft="30dp"/>
+
+    </LinearLayout>
+
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -58,18 +73,24 @@
 
     </TextView>
 
-
-    <ListView
-        android:id="@+id/lv_colectie"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp"
-        app:layout_constraintStart_toStartOf="parent"
+    <ScrollView
+        android:id="@+id/scrollId"
+        android:layout_width="402dp"
+        android:layout_height="373dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_colectie"
-        app:layout_constraintBottom_toTopOf="@id/btn_peste2000"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_colectie">
+
+        <ListView
+            android:id="@+id/lv_colectie"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_colectie"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="1dp" />
+    </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
