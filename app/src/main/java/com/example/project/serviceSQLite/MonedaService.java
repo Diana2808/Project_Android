@@ -51,23 +51,6 @@ public class MonedaService {
         taskRunner.executeAsync(callable,callback);
     }
 
-    //SELECT TOT -> AICI VA FI ADAUGAT CEVA NOU
-
-    public void getAllToate(Callback<List<MonedaBD>> callback){
-        Callable<List<MonedaBD>> callable=new Callable<List<MonedaBD>>() {
-            //callablel returneaza din baza de date lista de obiecte
-
-            @Override
-            public List<MonedaBD> call() {
-
-                return monedaDao.getToateMonedele();
-
-            }
-        };
-        //callbackul ia lista si o proceseaza
-        //callback = bucata din activitate
-        taskRunner.executeAsync(callable,callback);
-    }
 
 
     //INSERT
@@ -95,8 +78,8 @@ public class MonedaService {
         taskRunner.executeAsync(callable,callback);
     }
 
-    public  void insertAll(Callback<MonedaBD> callbackM, final MonedaBD moneda, final TaraBD tara, final CaracteristiciBD carac){
-
+    public  void insertAll( Callback<MonedaBD> callbackM, final MonedaBD
+            moneda, final TaraBD tara, final CaracteristiciBD carac){
 
         Callable<MonedaBD> callable=new Callable<MonedaBD>() {
             @Override
@@ -104,17 +87,20 @@ public class MonedaService {
                 if (moneda == null) {
                     return null;
                 }
+
                 long idTara = taraDao.insert(tara);
                 long idCarac = caracteristiciDao.insert(carac);
                 moneda.setId_tara(idTara);
                 moneda.setId_caracteristici(idCarac);
                 //daca id = -1 inseamna ca nu a mers insertul
+
                 long id = monedaDao.insert(moneda);
                 if(id==-1){
                     return null;
 
                 }
                 moneda.setId(id);
+
                 return moneda;
             }
 
@@ -122,6 +108,8 @@ public class MonedaService {
         //ce returneaza callable asta tb sa am in callback
         taskRunner.executeAsync(callable,callbackM);
     }
+
+
 
 
 
@@ -149,7 +137,7 @@ public class MonedaService {
 
     //DELETE
 
-    public void delete(final MonedaBD monedaBD, Callback<Integer> callback){
+    public void delete(final List<ListaMonedeTabele> lista, final MonedaBD monedaBD, Callback<Integer> callback, final TaraBD tara, final CaracteristiciBD carac){
         Callable<Integer> callable=new Callable<Integer>() {
             @Override
             public Integer call() {
@@ -157,7 +145,16 @@ public class MonedaService {
                     return -1;
 
                 }
-                return monedaDao.delete(monedaBD);
+
+
+                long idTara = tara.getId();
+                long idCarac =carac.getId();
+                caracteristiciDao.delete(carac);
+                taraDao.delete(tara);
+                if(monedaBD.getId_tara()==idTara && monedaBD.getId_caracteristici()==idCarac){
+                    return monedaDao.delete(monedaBD);
+                }
+               return -1;
 
 
             }
@@ -166,6 +163,8 @@ public class MonedaService {
     }
 
 
+
+    //->>>>>>>>>>>>>>>>>>>>>>>
     public void getAll2(Callback<List<ListaMonedeTabele>> callback){
         Callable<List<ListaMonedeTabele>> callable=new Callable<List<ListaMonedeTabele>>() {
 
@@ -181,6 +180,37 @@ public class MonedaService {
 
     }
 
+
+    public void getAllAn(Callback<List<ListaMonedeTabele>> callback){
+        Callable<List<ListaMonedeTabele>> callable=new Callable<List<ListaMonedeTabele>>() {
+
+            @Override
+            public List<ListaMonedeTabele> call() {
+
+                return monedaDao.getMonedePeste2000();
+
+            }
+        };
+
+        taskRunner.executeAsync(callable,callback);
+
+    }
+
+
+    public void getAllTara(Callback<List<ListaMonedeTabele>> callback){
+        Callable<List<ListaMonedeTabele>> callable=new Callable<List<ListaMonedeTabele>>() {
+
+            @Override
+            public List<ListaMonedeTabele> call() {
+
+                return monedaDao.getMonedeDupaTara();
+
+            }
+        };
+
+        taskRunner.executeAsync(callable,callback);
+
+    }
 
 
 }

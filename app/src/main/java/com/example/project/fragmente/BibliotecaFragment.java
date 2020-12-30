@@ -62,7 +62,7 @@ public class BibliotecaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         final View view=inflater.inflate(R.layout.fragment_biblioteca, container, false);
         listView=view.findViewById(R.id.lvTari);
 
@@ -75,14 +75,16 @@ public class BibliotecaFragment extends Fragment {
         if(getContext()!=null){
             Toast.makeText(getContext().getApplicationContext(),
                     "Lista cu toate monedele din lume!",Toast.LENGTH_SHORT).show();
-//            ArrayAdapter adapter=new ArrayAdapter(getContext().getApplicationContext(),
-//                    android.R.layout.simple_list_item_1,listBiblioteca);
+
             MonedaAdapter adapter = new MonedaAdapter(getContext().getApplicationContext(),
                                                 R.layout.lv_row_view_biblioteca,
                                                 listBiblioteca, getLayoutInflater());
             listView.setAdapter(adapter);
         }
-        getTariFromNetwork();
+        if(listBiblioteca.size()==0){
+            getTariFromNetwork();
+        }
+
         return view;
     }
 

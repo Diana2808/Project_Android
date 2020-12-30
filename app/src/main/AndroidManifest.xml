@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".InfoActivity"></activity>
-        <activity android:name=".LIstaColectieActivity" />
+        <activity android:name=".ListaColectieActivity" />
         <activity android:name=".AdaugaRecenzie" />
         <activity android:name=".AdaugInColectieActivity" />
         <activity android:name=".MainActivity">
@@ -22,6 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
     </application>
 
 </manifest>

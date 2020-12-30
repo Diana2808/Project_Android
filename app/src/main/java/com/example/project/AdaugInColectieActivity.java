@@ -13,10 +13,16 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.project.asyncTask.Callback;
 import com.example.project.clase.Caracteristici;
 import com.example.project.clase.Culoare;
+import com.example.project.clase.ListaMonedeTabele;
 import com.example.project.clase.Moneda;
 import com.example.project.clase.Tara;
+import com.example.project.claseBD.CaracteristiciBD;
+import com.example.project.claseBD.MonedaBD;
+import com.example.project.claseBD.TaraBD;
+import com.example.project.serviceSQLite.MonedaService;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
@@ -39,6 +45,9 @@ public class AdaugInColectieActivity extends AppCompatActivity {
     //pentru transferul informatiilor inapoi
     Intent intent;
 
+    MonedaService monedaService;
+
+
 
 
 
@@ -56,6 +65,9 @@ public class AdaugInColectieActivity extends AppCompatActivity {
         //pentru transferul datelor
         intent=getIntent();
 
+        monedaService=new MonedaService(getApplicationContext());
+
+
 
     }
 
@@ -65,6 +77,7 @@ public class AdaugInColectieActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(validare()){
                     Tara tara=creezTara();
+                    sincronizareBazaDeDate(tara);
                     Toast.makeText(getApplicationContext(),
                             tara.toString(),
                             Toast.LENGTH_LONG)
@@ -180,4 +193,50 @@ public class AdaugInColectieActivity extends AppCompatActivity {
         System.out.println(taraObiect.toString());
         return taraObiect;
     }
+
+
+
+
+    private void sincronizareBazaDeDate(Tara element){
+
+
+
+            String continent=element.getContinent();
+            String denTara=element.getDenumire();
+
+            TaraBD t=new TaraBD(continent,denTara);
+
+            String grosime=element.getMonede().getCaracteristici().getGrosime();
+            String diametru=element.getMonede().getCaracteristici().getDiametru();
+            String culoare=element.getMonede().getCaracteristici().getCuloare();
+            String material=element.getMonede().getCaracteristici().getMaterial();
+
+            CaracteristiciBD c=new CaracteristiciBD(grosime,diametru,culoare,material);
+
+            int an=element.getMonede().getAn();
+            String valoare=element.getMonede().getValoare();
+            String denumireMoneda=element.getMonede().getDenumire();
+
+            MonedaBD m=new MonedaBD(an, valoare,denumireMoneda,0 ,0);
+            Toast.makeText(getApplicationContext(),"AICI SUNT" +m.toString(),Toast.LENGTH_LONG).show();
+            //inserarea propriuzisa
+            monedaService.insertAll(inserareInBDMCallback(),m,t,c);
+
+
+    }
+
+    private Callback<MonedaBD> inserareInBDMCallback() {
+        return new Callback<MonedaBD>() {
+            @Override
+            public void runResultOnUiThread(MonedaBD result) {
+               // Log.i("CALLBACK inserare:",listaTab.toString());
+
+
+            }
+        };
+
+    }
+
+
+
 }
