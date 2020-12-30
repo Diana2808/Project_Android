@@ -20,6 +20,7 @@ public class Tara implements Parcelable{
     }
 
 
+
     protected Tara(Parcel in) {
         denumire = in.readString();
         continent = in.readString();

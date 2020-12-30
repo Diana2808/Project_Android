@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.example.project.asyncTask.AsyncTaskRunner;
 import com.example.project.asyncTask.Callback;
+import com.example.project.clase.ListaMonedeTabele;
+import com.example.project.clase.Tara;
 import com.example.project.claseBD.CaracteristiciBD;
 import com.example.project.claseBD.MonedaBD;
 import com.example.project.claseBD.TaraBD;
@@ -162,6 +164,23 @@ public class MonedaService {
         };
         taskRunner.executeAsync(callable,callback);
     }
+
+
+    public void getAll2(Callback<List<ListaMonedeTabele>> callback){
+        Callable<List<ListaMonedeTabele>> callable=new Callable<List<ListaMonedeTabele>>() {
+
+            @Override
+            public List<ListaMonedeTabele> call() {
+
+                return monedaDao.getAllImpreuna();
+
+            }
+        };
+
+        taskRunner.executeAsync(callable,callback);
+
+    }
+
 
 
 }

@@ -20,6 +20,7 @@ import com.example.project.MonedaAdapter;
 import com.example.project.R;
 import com.example.project.asyncTask.Callback;
 import com.example.project.clase.Caracteristici;
+import com.example.project.clase.ListaMonedeTabele;
 import com.example.project.clase.Moneda;
 import com.example.project.clase.Tara;
 import com.example.project.claseBD.CaracteristiciBD;
@@ -40,6 +41,7 @@ public class ColectieFragment extends Fragment {
  private ListView lvColectie;
  private List<Tara> listaTari=new ArrayList<>();
  public static final String CHEIE_1="ceva";
+ private  List<ListaMonedeTabele> listaTotTabele=new ArrayList<>();
 
 
  public TaraService taraService;
@@ -83,14 +85,15 @@ public class ColectieFragment extends Fragment {
 
             //IA-MI DIN BAZA DE DATE  -> inca nu merge selectul, nu stiu de ce
 
-            afisareDinBazaDeDate();
+                monedaService.getAll2(callbackGetAll());
+
             Toast.makeText(getContext().getApplicationContext(),listaTari.toString(),Toast.LENGTH_LONG).show();
             listaTari = getArguments().getParcelableArrayList(CHEIE_1);
             //INSERAREA IN BAZA DE DATE
             if(listaTari.size()>0){
                  sincronizareBazaDeDate(listaTari);
 
-}
+            }
 
             Log.i("FRAGMENT COLECTIE", listaTari.toString());
         }
@@ -274,6 +277,52 @@ public class ColectieFragment extends Fragment {
     }
 
 
+    private  Callback<List<ListaMonedeTabele>> callbackGetAll(){
+        return new Callback<List<ListaMonedeTabele>>() {
+            @Override
+            public void runResultOnUiThread(List<ListaMonedeTabele> result) {
+                if(result!=null){
+                    listaTotTabele.clear();
+                    listaTotTabele.addAll(result);
+                    listaTari=transformInListaDeTariDinTabele(listaTotTabele);
+                    notifyInternalAdapter();
+                    Log.i("TEST: Lista", listaTotTabele.toString());
+
+                }
+            }
+        };
+    }
+
+    private List<Tara> transformInListaDeTariDinTabele(List<ListaMonedeTabele> lista ){
+
+        for(int i=0;i<lista.size();i++){
+
+            String continent=lista.get(i).getContinent();
+            String numaTara=lista.get(i).getDenumire_tara();
+
+            String valoare=lista.get(i).getValoare();
+            String denumireMoneda=lista.get(i).getDneumire_moneda();
+            int an=lista.get(i).getAn();
+            String diametru=lista.get(i).getDiametru();
+            String grosime=lista.get(i).getGrosime();
+            String culoare=lista.get(i).getCuloare();
+            String material=lista.get(i).getMaterial();
+
+            Caracteristici c=new Caracteristici(grosime,diametru,culoare,material);
+            Moneda m=new Moneda(an,valoare,denumireMoneda,c);
+            Tara t=new Tara(numaTara,continent,m);
+
+            listaTari.add(t);
+
+
+
+        }
+
+        return listaTari;
+
+
+
+    }
 
 
 

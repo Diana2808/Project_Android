@@ -6,6 +6,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.example.project.clase.ListaMonedeTabele;
 import com.example.project.claseBD.MonedaBD;
 
 import java.util.List;
@@ -24,5 +25,10 @@ public interface MonedaDao {
 
     @Query("SELECT * FROM monede")
     List<MonedaBD> getToateMonedele();
+
+    @Query("SELECT t.denumire_tara,t.continent,m.valoare,m.denumire_moneda," +
+            "m.an,c.diametru,c.grosime,c.material,c.culoare FROM monede m,tari t," +
+            "caracteristici c WHERE m.id_caracteristici=c.id AND m.id_tara=t.id")
+    List<ListaMonedeTabele> getAllImpreuna();
 
 }
