@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
+    tools:context=".fragmente.ProfilFragment">
+
+<FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#BC96C3"
-    tools:context=".fragmente.ProfilFragment">
+   >
 
-    <!-- TODO: Update blank fragment layout -->
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,22 +32,10 @@
             android:textColor="#45091D"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="6dp"
             android:gravity="center"
             android:textSize="30dp"
             android:fontFamily="cursive"/>
-        <TextView
-            android:id="@+id/tv_nume"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Nume"
-            android:textColor="#45091D"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="16dp"
-            android:textSize="15dp"
-            android:fontFamily="casual"/>
 
     <EditText
         android:id="@+id/ettpn_nume"
@@ -61,7 +58,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="6dp"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -81,7 +78,7 @@
             android:textColor="#45091D"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="6dp"
             android:textSize="15dp"
             android:fontFamily="casual"/>
         <EditText
@@ -89,7 +86,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="numberDecimal"
+            android:inputType="number"
             android:layout_gravity="center"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
@@ -98,7 +95,9 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="87dp">
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp">
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/fab_AdaugFB"
@@ -111,6 +110,8 @@
                 android:backgroundTint="#ffb"
                 android:clickable="true"
                 android:src="@drawable/friends"
+                android:paddingBottom="6dp"
+
 
                 />
             <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -123,7 +124,9 @@
                 android:layout_marginRight="5dp"
                 android:backgroundTint="#ffb"
                 android:clickable="true"
-                android:src="@drawable/eraser"
+                android:src="@drawable/clear"
+                android:paddingBottom="6dp"
+
 
                 />
             <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -136,7 +139,8 @@
                 android:layout_marginRight="5dp"
                 android:backgroundTint="#ffb"
                 android:clickable="true"
-                android:src="@drawable/clear"
+                android:src="@drawable/eraser"
+                android:paddingBottom="6dp"
 
 
 
@@ -147,10 +151,10 @@
 
         <ListView
             android:id="@+id/lv_prieteni"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="411dp"
+            android:layout_height="332dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="5dp" />
 
     </LinearLayout>
@@ -158,3 +162,4 @@
 
 
 </FrameLayout>
+</ScrollView>
