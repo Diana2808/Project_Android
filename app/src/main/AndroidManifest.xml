@@ -12,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".InfoActivity"></activity>
-        <activity android:name=".ListaColectieActivity" />
         <activity android:name=".AdaugaRecenzie" />
         <activity android:name=".AdaugInColectieActivity" />
         <activity android:name=".MainActivity">

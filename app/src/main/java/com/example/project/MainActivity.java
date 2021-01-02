@@ -72,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent=new Intent(getApplicationContext(), AdaugInColectieActivity.class);
                     startActivityForResult(intent, COD);
 
-
                     fragmentCurent = ColectieFragment.newInstance(monedeListaColectie);
+
                 }else if(item.getItemId()==R.id.fragment_Profil) {
                     fragmentCurent = new ProfilFragment();
                 }

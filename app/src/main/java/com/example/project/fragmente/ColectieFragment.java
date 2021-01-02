@@ -1,5 +1,6 @@
 package com.example.project.fragmente;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.project.AdaugInColectieActivity;
 import com.example.project.MonedaAdapter;
 import com.example.project.R;
 import com.example.project.asyncTask.Callback;
@@ -35,10 +37,10 @@ public class ColectieFragment extends Fragment {
 
  private Button btnAn;
  private Button btnTara;
+ private Button btnAdauga;
  private ListView lvColectie;
  private List<Tara> listaTari=new ArrayList<>();
  public static final String CHEIE_1="ceva";
- public static final int cod_request_inserare=201;
  private  List<ListaMonedeTabele> listaTotTabele=new ArrayList<>();
 
 
@@ -69,6 +71,7 @@ public class ColectieFragment extends Fragment {
         lvColectie=view.findViewById(R.id.lv_colectie);
         btnAn =view.findViewById(R.id.btn_peste2000);
         btnTara=view.findViewById(R.id.btn_filtruPeRomania);
+        btnAdauga=view.findViewById(R.id.btn_adauga);
         taraService=new TaraService(getContext().getApplicationContext());
         caracteristiciService=new CaracteristiciService(getContext().getApplicationContext());
         monedaService=new MonedaService(getContext().getApplicationContext());
@@ -116,6 +119,15 @@ public class ColectieFragment extends Fragment {
             }
         });
 
+
+        btnAdauga.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext().getApplicationContext(), AdaugInColectieActivity.class);
+                startActivity(intent);
+            }
+        });
+
         if (getArguments() != null) {
 
 
@@ -126,11 +138,6 @@ public class ColectieFragment extends Fragment {
                 monedaService.getAll2(callbackGetAll());
 
             }
-
-                //sincronizareBazaDeDate(listaTari);
-
-
-
 
 
 

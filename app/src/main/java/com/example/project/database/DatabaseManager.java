@@ -66,5 +66,4 @@ public abstract class DatabaseManager extends RoomDatabase {
     public abstract TaraDao getTaraDao();
     public abstract MonedaDao getMonedaDao();
     public abstract CaracteristiciDao getCaracteristiciDao();
-
 }

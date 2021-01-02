@@ -62,8 +62,6 @@ public class ProfilFragment extends Fragment {
         final View view= inflater.inflate(R.layout.fragment_profil, container, false);
 
         initializare(view);
-
-        setareAdapter();
         fabAdaugare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,6 +97,8 @@ public class ProfilFragment extends Fragment {
 
             }
         });
+        setareAdapter();
+
         firebaseService = FirebaseService.newInstance();
         firebaseService.atasare(afisareCallback());
 
