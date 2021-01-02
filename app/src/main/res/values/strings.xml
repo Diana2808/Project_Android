@@ -30,6 +30,19 @@
     <string name="colectia_mea">Colectia mea</string>
     <string name="prieteni">Prieteni</string>
     <string name="imageview_prieteni">ImageView_prieteni</string>
+    <string name="descriere_info">Acestea suntem noi, încercând să rezolvăm bug-urile apărute în producție!</string>
+    <string name="moneda_noua">MONEDA NOUA</string>
+    <string name="tara">Tara</string>
+    <string name="denumire_moneda">Denumire moneda</string>
+    <string name="valoare_moneda">Valoare moneda</string>
+    <string name="an_yyyy">An YYYY</string>
+    <string name="diametru_cm">Diametru (cm)</string>
+    <string name="grosime_mm">Grosime (mm)</string>
+    <string name="culoare_moneda">Culoare moneda</string>
+    <string name="auriu">Auriu</string>
+    <string name="argintiu">Argintiu</string>
+    <string name="material">Material</string>
+    <string name="nume">Nume</string>
 
     <string-array name="continente">
         <item>Asia</item>

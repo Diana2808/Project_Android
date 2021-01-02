@@ -39,7 +39,7 @@
               android:id="@+id/tv_titlu"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:text="MONEDA NOUA"
+              android:text="@string/moneda_noua"
               android:layout_marginTop="20dp"
               android:layout_marginBottom="20dp"
               android:gravity="center"
@@ -75,7 +75,7 @@
                   android:id="@+id/tiet_tara"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:hint="Tara"
+                  android:hint="@string/tara"
                   android:textColorHint="#541260"/>
 
           </com.google.android.material.textfield.TextInputLayout>
@@ -113,7 +113,7 @@
                     android:id="@+id/tiet_denumire"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Denumire moneda"
+                    android:hint="@string/denumire_moneda"
                     android:textColorHint="#541260"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -126,7 +126,7 @@
                     android:id="@+id/tiet_valoare"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Valoare moneda"
+                    android:hint="@string/valoare_moneda"
                     android:textColorHint="#541260"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -136,7 +136,7 @@
                 android:id="@+id/tv_an"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="An YYYY" />
+                android:text="@string/an_yyyy" />
 
             <EditText
                 android:id="@+id/etn_an"
@@ -154,7 +154,7 @@
                     android:id="@+id/tiet_diametru"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Diametru (cm)"
+                    android:hint="@string/diametru_cm"
                     android:textColorHint="#541260"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -166,7 +166,7 @@
                     android:id="@+id/tiet_grosime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Grosime (mm)"
+                    android:hint="@string/grosime_mm"
                     android:textColorHint="#541260"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -174,7 +174,7 @@
                 android:id="@+id/tv_caracteristici"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Culoare moneda" />
+                android:text="@string/culoare_moneda" />
 
             <RadioGroup
                 android:layout_width="match_parent"
@@ -187,7 +187,7 @@
                     android:id="@+id/rb_auriu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Auriu"
+                    android:text="@string/auriu"
                     android:buttonTint="#ECB81F"
                     />
 
@@ -195,7 +195,7 @@
                     android:id="@+id/rb_argintiu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Argintiu"
+                    android:text="@string/argintiu"
                     android:buttonTint="#8E8D8D"/>
             </RadioGroup>
 
@@ -208,7 +208,7 @@
                     android:id="@+id/tiet_material"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Material"
+                    android:hint="@string/material"
                     android:textColorHint="#541260"/>
             </com.google.android.material.textfield.TextInputLayout>
 

@@ -20,13 +20,14 @@
             android:layout_width="300dp"
             android:layout_height="211dp"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/colectie" />
+            app:srcCompat="@drawable/noi" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Aici vom avea un text foarte lung pe care trebuie sa il compun......"
-            style="@style/stilul1"
+            android:text="@string/descriere_info"
+            android:textStyle="italic"
+            android:textSize="25dp"
             android:gravity="center"
             android:padding="4dp"
             ></TextView>
