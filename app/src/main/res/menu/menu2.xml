@@ -3,28 +3,28 @@
 
     <item
         android:id="@+id/fragment_acasa"
-        android:title="Acasa"
+        android:title="@string/acasa"
         android:icon="@drawable/home"
 
         ></item>
 
     <item
     android:id="@+id/fragment_biblioteca"
-    android:title="Biblioteca"
+    android:title="@string/biblioteca"
     android:icon="@drawable/money"
 
     ></item>
 
     <item
         android:id="@+id/fragment_colectiaMea"
-        android:title="Colectia mea"
+        android:title="@string/colectia_mea"
         android:icon="@drawable/wallet"
 
         ></item>
 
     <item
         android:id="@+id/fragment_Profil"
-        android:title="Profil"
+        android:title="@string/prieteni"
         android:icon="@drawable/user"
 
         ></item>

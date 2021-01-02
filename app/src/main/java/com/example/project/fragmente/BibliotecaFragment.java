@@ -33,7 +33,7 @@ public class BibliotecaFragment extends Fragment {
     private static final String BIBLIOTECA_CHEIE="cheieBiblioteca";
 
     //URL din care preiau datele
-    private static final String URL="https://api.mocki.io/v1/f7c9c1e9";
+    private static final String URL="https://api.mocki.io/v1/7bc35419";
 
     //lista in care pun datele
     private List<Tara> listBiblioteca=new ArrayList<>();

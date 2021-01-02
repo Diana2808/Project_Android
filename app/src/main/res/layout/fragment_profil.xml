@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Adaug prieteni colectionari !"
+            android:text="@string/adaug_prieteni_colectionari"
             android:textColor="#45091D"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Nume"
+        android:hint="@string/hint_nume"
         android:inputType="textPersonName"
         android:layout_gravity="center"
         android:layout_marginLeft="5dp"
@@ -65,7 +65,7 @@
                 android:id="@+id/tiet_prenume"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="prenume"
+                android:hint="@string/hint_prenume"
                 android:layout_gravity="center"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,7 +74,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Numar de monede"
+            android:text="@string/tv_numarMonede"
             android:textColor="#45091D"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"

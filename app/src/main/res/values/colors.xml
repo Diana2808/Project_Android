@@ -4,4 +4,9 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="lw_row_view_Biblioteca_background">#EFD5FF</color>
+
+    <color name="MyColorPrimary">#811A93</color>
+    <color name="MyColorPrimaryDark">#410D4A</color>
+    <color name="MyColorAccent">#AD1457</color>
+
 </resources>

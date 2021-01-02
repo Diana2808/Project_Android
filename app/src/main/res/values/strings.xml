@@ -17,6 +17,19 @@
     <string name="fab_icon_content_description">review</string>
 
     <string name="acasa_mesaj_intampinare">Buna, %1$s!</string>
+    <string name="adaug_prieteni_colectionari">Adaug prieteni colectionari !</string>
+    <string name="hint_nume">Nume</string>
+    <string name="hint_prenume">Prenume</string>
+    <string name="tv_numarMonede">Numar de monede</string>
+    <string name="tv_prieten">Prieten :</string>
+    <string name="btn_peste_anii_2000">Peste anii 2000</string>
+    <string name="btn_monede_din_romania">Monede din Romania</string>
+    <string name="btn_Adauga">Adauga</string>
+    <string name="acasa">Acasa</string>
+    <string name="biblioteca">Biblioteca</string>
+    <string name="colectia_mea">Colectia mea</string>
+    <string name="prieteni">Prieteni</string>
+    <string name="imageview_prieteni">ImageView_prieteni</string>
 
     <string-array name="continente">
         <item>Asia</item>

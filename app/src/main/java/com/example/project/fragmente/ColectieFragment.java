@@ -60,10 +60,6 @@ public class ColectieFragment extends Fragment {
 
     }
 
-
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -86,7 +82,7 @@ public class ColectieFragment extends Fragment {
                     monedaService.getAllAn(callbackGetPeste2000());
                     listaTari = getArguments().getParcelableArrayList(CHEIE_1);
                     iAn=true;
-                    btnAn.setText("Toata lista !");
+                    btnAn.setText("Toata lista!");
                 }else{
 
                     listaTari.clear();
@@ -107,7 +103,7 @@ public class ColectieFragment extends Fragment {
                     monedaService.getAllTara(callbackGetDupaTara());
                     listaTari = getArguments().getParcelableArrayList(CHEIE_1);
                     iTara=true;
-                    btnTara.setText("Toata lista !");
+                    btnTara.setText("Toata lista!");
                 }else{
 
                     listaTari.clear();
