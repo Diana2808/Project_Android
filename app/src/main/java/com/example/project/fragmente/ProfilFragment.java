@@ -27,6 +27,9 @@ import java.util.List;
 
 public class ProfilFragment extends Fragment {
 
+    public static final String NUMELE_TREBUIE_SA_CONTINA_MINIM_3_CARACTERE = "Numele trebuie sa contina minim 3 caractere!";
+    public static final String PRENUMELE_TREBUIE_SA_CONTINA_MINIM_3_CARACTERE = "Prenumele trebuie sa contina minim 3 caractere!";
+    public static final String NUMARUL_DE_MONEDE_POATE_FI_DOAR_POZITIV = "Numarul de monede poate fi doar pozitiv!";
     private EditText etNume;
     private TextInputEditText tietPrenume;
     private EditText etMonede;
@@ -37,7 +40,7 @@ public class ProfilFragment extends Fragment {
 
     private List<Prieten> lista= new ArrayList<>();
 
-    //pentru FIrebase
+    //pentru Firebase
     private FirebaseService firebaseService;
     private int idPrietenSelectat = -1;
 
@@ -172,19 +175,19 @@ public class ProfilFragment extends Fragment {
     private boolean validari() {
         if (etNume.getText() == null || etNume.getText().toString().trim().isEmpty() ||etNume.getText().toString().trim().length()<3) {
             Toast.makeText(getContext().getApplicationContext(),
-                  "Numele trebuie sa contina minim 3 caractere!",
+                    NUMELE_TREBUIE_SA_CONTINA_MINIM_3_CARACTERE,
                     Toast.LENGTH_LONG).show();
             return false;
         }
         if (tietPrenume.getText() == null || tietPrenume.getText().toString().trim().isEmpty() ||tietPrenume.getText().toString().trim().length()<3) {
             Toast.makeText(getContext().getApplicationContext(),
-                   "Prenumele trebuie sa contina minim 3 caractere!",
+                    PRENUMELE_TREBUIE_SA_CONTINA_MINIM_3_CARACTERE,
                     Toast.LENGTH_LONG).show();
             return false;
         }
         if(Integer.parseInt(etMonede.getText().toString())<0){
             Toast.makeText(getContext().getApplicationContext(),
-                    "Numarul de monede poate fi doar pozitiv!",
+                    NUMARUL_DE_MONEDE_POATE_FI_DOAR_POZITIV,
                     Toast.LENGTH_LONG).show();
             return false;
         }

@@ -6,8 +6,7 @@ package com.example.project.asyncTask;
 
 public class HandlerMessage<R> implements Runnable {
 
-        //ne asiguram ca dupa ce am creeat un mesaj cu un
-        // resultat si un thread nu ii mai permitem sa isi schimbe REFERINTA
+
     private final R result;
     private final Callback<R> mainThreadOperation;
 

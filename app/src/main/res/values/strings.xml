@@ -43,6 +43,7 @@
     <string name="argintiu">Argintiu</string>
     <string name="material">Material</string>
     <string name="nume">Nume</string>
+    <string name="adaugare">Adaugare</string>
 
     <string-array name="continente">
         <item>Asia</item>

@@ -10,10 +10,8 @@ import java.util.concurrent.Callable;
 
 public class RunnableTask<R> implements Runnable  {
 
-        //procesare paralela
-        //preluarea rezult
-        //am nevoie sa trimit un HANDLERMESSAGE
-
+    public static final String RUNNABLE_TASK = "RunnableTask";
+    public static final String FAILED_CALL_RUNNABLE_TASK = "failed call runnableTask";
     private final Handler handler;
     private final Callable<R> asyncOption;
     private final Callback<R> mainThreadOperation;
@@ -36,7 +34,7 @@ public class RunnableTask<R> implements Runnable  {
                 //il trimit catre handler -> il arunca el catre app cand doreste
             handler.post(new HandlerMessage<>(result,mainThreadOperation));
         } catch (Exception e) {
-            Log.i("RunnableTask","failed call runnableTask"+ e.getMessage());
+            Log.i(RUNNABLE_TASK, FAILED_CALL_RUNNABLE_TASK + e.getMessage());
         }
 
     }

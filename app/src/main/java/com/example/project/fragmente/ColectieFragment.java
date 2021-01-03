@@ -35,7 +35,17 @@ import java.util.List;
 
 public class ColectieFragment extends Fragment {
 
- private Button btnAn;
+    public static final String TOATA_LISTA = "Toata lista!";
+    public static final String PESTE_ANII_2000 = "Peste anii 2000";
+    public static final String TOATA_LISTA1 = "Toata lista!";
+    public static final String MONEDE_DIN_ROMANIA = "Monede din Romania";
+    public static final String FRAGMENT_COLECTIE = "FRAGMENT COLECTIE";
+    public static final String TEST_LISTA = "TEST: Lista";
+    public static final String TEST_LISTA_TOATE = "TEST: Lista toate";
+    public static final String TEST_LISTA_TARI = "TEST: Lista tari";
+    public static final String TEST_LISTA_TOATE1 = "TEST: Lista toate";
+    public static final String TEST_LISTA_TARI1 = "TEST: Lista tari";
+    private Button btnAn;
  private Button btnTara;
  private Button btnAdauga;
  private ListView lvColectie;
@@ -82,14 +92,14 @@ public class ColectieFragment extends Fragment {
                     monedaService.getAllAn(callbackGetPeste2000());
                     listaTari = getArguments().getParcelableArrayList(CHEIE_1);
                     iAn=true;
-                    btnAn.setText("Toata lista!");
+                    btnAn.setText(TOATA_LISTA);
                 }else{
 
                     listaTari.clear();
                     monedaService.getAll2(callbackGetAll());
                     listaTari = getArguments().getParcelableArrayList(CHEIE_1);
                     iAn=false;
-                    btnAn.setText("Peste anii 2000");
+                    btnAn.setText(PESTE_ANII_2000);
 
                 }
             }
@@ -103,14 +113,14 @@ public class ColectieFragment extends Fragment {
                     monedaService.getAllTara(callbackGetDupaTara());
                     listaTari = getArguments().getParcelableArrayList(CHEIE_1);
                     iTara=true;
-                    btnTara.setText("Toata lista!");
+                    btnTara.setText(TOATA_LISTA1);
                 }else{
 
                     listaTari.clear();
                     monedaService.getAll2(callbackGetAll());
                     listaTari = getArguments().getParcelableArrayList(CHEIE_1);
                     iTara=false;
-                    btnTara.setText("Monede din Romania");
+                    btnTara.setText(MONEDE_DIN_ROMANIA);
                 }
             }
         });
@@ -127,7 +137,7 @@ public class ColectieFragment extends Fragment {
         if (getArguments() != null) {
 
 
-            Toast.makeText(getContext().getApplicationContext(),listaTari.toString(),Toast.LENGTH_LONG).show();
+
             listaTari = getArguments().getParcelableArrayList(CHEIE_1);
             //POPULARE
             if(listaTari.size()==0){
@@ -137,7 +147,7 @@ public class ColectieFragment extends Fragment {
 
 
 
-            Log.i("FRAGMENT COLECTIE", listaTari.toString());
+            Log.i(FRAGMENT_COLECTIE, listaTari.toString());
         }
         //creare adapter pentru ListView
         if (getContext() != null) {
@@ -146,7 +156,7 @@ public class ColectieFragment extends Fragment {
                    R.layout.lv_row_view_biblioteca,
                     listaTari, getLayoutInflater());
             lvColectie.setAdapter(adapter);
-            Log.i("dsfddddddd",listaTari.toString());
+
         }
 
 
@@ -187,7 +197,7 @@ public class ColectieFragment extends Fragment {
                     listaTotTabele.addAll(result);
                     listaTari=transformInListaDeTariDinTabele(listaTotTabele);
                     notifyInternalAdapter();
-                    Log.i("TEST: Lista", listaTotTabele.toString());
+                    Log.i(TEST_LISTA, listaTotTabele.toString());
 
                 }
             }
@@ -222,11 +232,7 @@ public class ColectieFragment extends Fragment {
 
         return listaTari;
 
-
-
     }
-
-
 
     private  Callback<List<ListaMonedeTabele>> callbackGetPeste2000(){
         return new Callback<List<ListaMonedeTabele>>() {
@@ -237,8 +243,8 @@ public class ColectieFragment extends Fragment {
                     listaTotTabele.addAll(result);
                     listaTari=transformInListaDeTariDinTabele(listaTotTabele);
                     notifyInternalAdapter();
-                    Log.i("TEST: Lista toate", listaTotTabele.toString());
-                    Log.i("TEST: Lista tari", listaTotTabele.toString());
+                    Log.i(TEST_LISTA_TOATE, listaTotTabele.toString());
+                    Log.i(TEST_LISTA_TARI, listaTotTabele.toString());
 
                 }
             }
@@ -256,8 +262,8 @@ public class ColectieFragment extends Fragment {
                     listaTotTabele.addAll(result);
                     listaTari=transformInListaDeTariDinTabele(listaTotTabele);
                     notifyInternalAdapter();
-                    Log.i("TEST: Lista toate", listaTotTabele.toString());
-                    Log.i("TEST: Lista tari", listaTotTabele.toString());
+                    Log.i(TEST_LISTA_TOATE1, listaTotTabele.toString());
+                    Log.i(TEST_LISTA_TARI1, listaTotTabele.toString());
 
                 }
             }

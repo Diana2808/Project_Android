@@ -44,10 +44,7 @@ public class HttpManager implements Callable<String> {
             inputStreamReader=new InputStreamReader(inputStream);
             bufferedReader=new BufferedReader(inputStreamReader);
 
-            //pot citi dintr-un buffer linie cu linie
-            //creez stringuri cu StringBilder
-            //creez String linie in care citesc fiecare linie din bufferedReader
-            //atat timp cat se citeste
+
             StringBuilder result=new StringBuilder();
             String line;
             while ((line=bufferedReader.readLine())!=null){

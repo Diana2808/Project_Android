@@ -30,6 +30,11 @@ import java.util.List;
 
 public class AdaugInColectieActivity extends AppCompatActivity {
     public static final String CHEIE_TARA="cheie";
+    public static final String CAMPURILE_TREBUIE_SA_CONTINA_MINIM_3_CARACTERE = "Campurile trebuie sa contina minim 3 caractere!";
+    public static final String ANUL_TREBUIE_SA_CONTINA_4_CIFRE_COMPLETATE_SI_SA_SE_INCADREZE_INTRE_1500_SI_2020 = "Anul trebuie sa contina 4 cifre completate si sa se incadreze intre 1500 si 2020!";
+    public static final String DIAMETRUL_TREBUIE_SA_CONTINA_LA_SFARSIT_CM_DIMESIUNEA_MAI_MICA_DE_3_TREBUIE_INTRODUSA_LA_INCEPUT = "Diametrul trebuie sa contina la sfarsit 'cm'! Dimesiunea mai mica de 3 trebuie introdusa la inceput!";
+    public static final String GROSIMEA_TREBUIE_SA_CONTINA_LA_SFARSIT_MM_GROSIMEA_MAI_MICA_DE_3_TREBUIE_INTRODUSA_LA_INCEPUT = "Grosimea trebuie sa contina la sfarsit 'mm'! Grosimea mai mica de 3 trebuie introdusa la inceput!";
+    public static final String TREBUIE_SA_ALEGETI_O_CULOARE = "Trebuie sa alegeti o culoare!";
 
     Spinner spinContinent;
     TextInputEditText tietTara;
@@ -46,9 +51,6 @@ public class AdaugInColectieActivity extends AppCompatActivity {
     Intent intent;
 
     MonedaService monedaService;
-
-
-
 
 
     @Override
@@ -90,8 +92,6 @@ public class AdaugInColectieActivity extends AppCompatActivity {
         };
     }
 
-
-
     private void initializare() {
         spinContinent=findViewById(R.id.spin_continent);
         adaugareInSpinner();
@@ -121,37 +121,33 @@ public class AdaugInColectieActivity extends AppCompatActivity {
                 tietValoare.getText() == null || tietValoare.getText().toString().trim().length() < 3 ||
                 tietMaterial.getText() == null || tietMaterial.getText().toString().trim().length() < 3 ){
             Toast.makeText(getApplicationContext(),
-                    "Campurile trebuie sa contina minim 3 caractere!",
+                    CAMPURILE_TREBUIE_SA_CONTINA_MINIM_3_CARACTERE,
                     Toast.LENGTH_LONG)
                     .show();
             return false;
         } if(etAn.getText() == null || Integer.parseInt(etAn.getText().toString().trim())<4
                 ||Integer.parseInt(etAn.getText().toString())<1500  ||Integer.parseInt(etAn.getText().toString())>2020) {
             Toast.makeText(getApplicationContext(),
-                    "Anul trebuie sa contina 4 cifre completate si sa se incadreze intre 1500 si 2020!",
+                    ANUL_TREBUIE_SA_CONTINA_4_CIFRE_COMPLETATE_SI_SA_SE_INCADREZE_INTRE_1500_SI_2020,
                     Toast.LENGTH_LONG)
                     .show();
             return false;
         }
 
 
-        if(tietDiamentru.getText().toString().substring(tietDiamentru.getText().toString().length()-2).equals("cm")==false
-        ||
-                Integer.parseInt(tietDiamentru.getText().toString().substring(0,1))>3){
+        if(tietDiamentru.getText().toString().substring(tietDiamentru.getText().toString().length()-2).equals("cm")==false){
             Toast.makeText(getApplicationContext(),
-                    "Diametrul trebuie sa contina la sfarsit 'cm'! Dimesiunea mai mica de 3 trebuie introdusa la inceput!",
+                    DIAMETRUL_TREBUIE_SA_CONTINA_LA_SFARSIT_CM_DIMESIUNEA_MAI_MICA_DE_3_TREBUIE_INTRODUSA_LA_INCEPUT,
                     Toast.LENGTH_LONG)
                     .show();
             return false;
 
         }
-        if(tietGrosime.getText().toString().substring(tietGrosime.getText().toString().length()-2).equals("mm")==false
-        || Integer.parseInt(tietGrosime.getText().toString().substring(0,1))>3){
+        if(tietGrosime.getText().toString().substring(tietGrosime.getText().toString().length()-2).equals("mm")==false){
 
-            //daca ii dai doar litere iti va crapa, inca ma gandesc cum sa modific :/
 
             Toast.makeText(getApplicationContext(),
-                    "Grosimea trebuie sa contina la sfarsit 'mm'! Grosimea mai mica de 3 trebuie introdusa la inceput!",
+                    GROSIMEA_TREBUIE_SA_CONTINA_LA_SFARSIT_MM_GROSIMEA_MAI_MICA_DE_3_TREBUIE_INTRODUSA_LA_INCEPUT,
                     Toast.LENGTH_LONG)
                     .show();
             return false;
@@ -159,7 +155,7 @@ public class AdaugInColectieActivity extends AppCompatActivity {
         }
         if(rgCuloare.getCheckedRadioButtonId()!=R.id.rb_argintiu && rgCuloare.getCheckedRadioButtonId()!=R.id.rb_auriu){
             Toast.makeText(getApplicationContext(),
-                    "Trebuie sa alegeti o culoare!",
+                    TREBUIE_SA_ALEGETI_O_CULOARE,
                     Toast.LENGTH_LONG)
                     .show();
             return false;
@@ -218,10 +214,8 @@ public class AdaugInColectieActivity extends AppCompatActivity {
             String denumireMoneda=element.getMonede().getDenumire();
 
             MonedaBD m=new MonedaBD(an, valoare,denumireMoneda,0 ,0);
-            Toast.makeText(getApplicationContext(),"AICI SUNT" +m.toString(),Toast.LENGTH_LONG).show();
-            //inserarea propriuzisa
-            monedaService.insertAll(inserareInBDMCallback(),m,t,c);
 
+            monedaService.insertAll(inserareInBDMCallback(),m,t,c);
 
     }
 
@@ -229,7 +223,6 @@ public class AdaugInColectieActivity extends AppCompatActivity {
         return new Callback<MonedaBD>() {
             @Override
             public void runResultOnUiThread(MonedaBD result) {
-               // Log.i("CALLBACK inserare:",listaTab.toString());
 
 
             }

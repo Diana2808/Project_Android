@@ -56,7 +56,6 @@ public class Prieten {
     }
 
 
-    //pentru data.getValue(Prieten.class) -> firebase
     public Prieten(){
 
     }

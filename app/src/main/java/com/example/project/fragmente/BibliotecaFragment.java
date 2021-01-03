@@ -34,6 +34,8 @@ public class BibliotecaFragment extends Fragment {
 
     //URL din care preiau datele
     private static final String URL="https://api.mocki.io/v1/7bc35419";
+    public static final String FRAGMENT_BIBLIOTECA = "Fragment Biblioteca";
+    public static final String LISTA_CU_TOATE_MONEDELE_DIN_LUME = "Lista cu toate monedele din lume!";
 
     //lista in care pun datele
     private List<Tara> listBiblioteca=new ArrayList<>();
@@ -68,13 +70,13 @@ public class BibliotecaFragment extends Fragment {
 
         if(getArguments()!=null){
             listBiblioteca=getArguments().getParcelableArrayList(BIBLIOTECA_CHEIE);
-            Log.i("Fragment Biblioteca", listBiblioteca.toString());
+            Log.i(FRAGMENT_BIBLIOTECA, listBiblioteca.toString());
         }
 
         //creare adapter pt listview
         if(getContext()!=null){
             Toast.makeText(getContext().getApplicationContext(),
-                    "Lista cu toate monedele din lume!",Toast.LENGTH_SHORT).show();
+                    LISTA_CU_TOATE_MONEDELE_DIN_LUME,Toast.LENGTH_SHORT).show();
 
             MonedaAdapter adapter = new MonedaAdapter(getContext().getApplicationContext(),
                                                 R.layout.lv_row_view_biblioteca,

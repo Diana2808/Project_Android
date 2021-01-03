@@ -18,6 +18,12 @@ import java.util.List;
 
 public class FirebaseService {
 
+    public static final String FIREBASE_DO = "FIREBASE DO:";
+    public static final String MERGEEE = "MERGEEE !";
+    public static final String FIREBASE_FAIL = "FIREBASE FAIL:";
+    public static final String NU_MERGEEE = " NU MERGEEE !";
+    public static final String FIREBASE_FAIL1 = "FIREBASE FAIL:";
+    public static final String DATELE_NU_SUNT_VALABILE = " Datele nu sunt valabile !";
     private  static FirebaseService firebaseService;
 
     //referinta catre primul nod = dao din sqlite
@@ -67,12 +73,13 @@ public class FirebaseService {
             @Override
             //ne arata informatiile de sub prieteni
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.i("FIREBASE DO:","MERGEEE !");
+
+                Log.i(FIREBASE_DO, MERGEEE);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.i("FIREBASE FAIL:"," NU MERGEEE !");
+                Log.i(FIREBASE_FAIL, NU_MERGEEE);
 
             }
         });
@@ -96,7 +103,7 @@ public class FirebaseService {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.i("FIREBASE FAIL:"," Datele nu sunt valabile !");
+                Log.i(FIREBASE_FAIL1, DATELE_NU_SUNT_VALABILE);
 
             }
         });

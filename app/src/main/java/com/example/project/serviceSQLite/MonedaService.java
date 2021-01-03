@@ -47,7 +47,6 @@ public class MonedaService {
             }
         };
         //callbackul ia lista si o proceseaza
-        //callback = bucata din activitate
         taskRunner.executeAsync(callable,callback);
     }
 
